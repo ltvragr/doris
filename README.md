@@ -1,4 +1,4 @@
-doris
+DORIS
 =====
 
-DORIS: A Database of Research in Science
+### DORIS: A Database of Research in Science
