@@ -11,7 +11,38 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120828194628) do
+ActiveRecord::Schema.define(:version => 20120828214737) do
+
+  create_table "labs", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "labs_projects", :id => false, :force => true do |t|
+    t.integer "lab_id"
+    t.integer "project_id"
+  end
+
+  add_index "labs_projects", ["lab_id", "project_id"], :name => "index_labs_projects_on_lab_id_and_project_id"
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "projects_users", :id => false, :force => true do |t|
+    t.integer "project_id"
+    t.integer "user_id"
+  end
+
+  add_index "projects_users", ["project_id", "user_id"], :name => "index_projects_users_on_project_id_and_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "login"
