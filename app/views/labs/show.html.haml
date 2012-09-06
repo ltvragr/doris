@@ -1,15 +1,21 @@
-%p#notice= notice
+- model_class = Lab
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human
 
 %p
-  %b Name:
+  %strong= model_class.human_attribute_name(:name) + ':'
+  %br
   = @lab.name
 %p
-  %b Url:
+  %strong= model_class.human_attribute_name(:url) + ':'
+  %br
   = @lab.url
 %p
-  %b Description:
+  %strong= model_class.human_attribute_name(:description) + ':'
+  %br
   = @lab.description
 
-= link_to 'Edit', edit_lab_path(@lab)
-\|
-= link_to 'Back', labs_path
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), labs_path, :class => 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_lab_path(@lab), :class => 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), lab_path(@lab), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
