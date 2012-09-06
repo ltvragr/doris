@@ -1,0 +1,23 @@
+%h1 Listing labs
+
+%table
+  %tr
+    %th Name
+    %th Url
+    %th Description
+    %th
+    %th
+    %th
+
+  - @labs.each do |lab|
+    %tr
+      %td= lab.name
+      %td= lab.url
+      %td= lab.description
+      %td= link_to 'Show', lab
+      %td= link_to 'Edit', edit_lab_path(lab)
+      %td= link_to 'Destroy', lab, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Lab', new_lab_path
