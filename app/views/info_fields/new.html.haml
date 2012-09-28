@@ -1,5 +1,4 @@
-%h1 New info_field
-
-= render 'form'
-
-= link_to 'Back', info_fields_path
+- model_class = InfoField
+.page-header
+  %h1=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human, :default => "New #{model_class.model_name.human}")
+= render :partial => "form"
