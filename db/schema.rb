@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120928180921) do
+ActiveRecord::Schema.define(:version => 20120928185820) do
 
   create_table "info_fields", :force => true do |t|
     t.string   "associated_object"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20120928180921) do
     t.string   "status"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "role"
   end
 
 end
