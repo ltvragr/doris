@@ -1,5 +1,6 @@
 class InfoValue < ActiveRecord::Base
   belongs_to :info_field
+
   attr_accessible :associated_object_id, :associated_object_type, :content
 
   def sorted_values_for_object(object)

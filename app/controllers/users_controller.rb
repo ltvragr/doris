@@ -35,6 +35,8 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    @fields = InfoField.where("associated_object = 'User' AND associated_role = ?", @user.role)
+    @values = InfoValue.where("associated_object_id = ? AND associated_object_type = 'User'", @user.id)
   end
 
   # POST /users
