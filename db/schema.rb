@@ -26,15 +26,14 @@ ActiveRecord::Schema.define(:version => 20120928180921) do
   end
 
   create_table "info_values", :force => true do |t|
-    t.integer  "info_field_id_id"
+    t.integer  "info_field_id"
     t.integer  "associated_object_id"
-    t.string   "associated_object_type"
     t.text     "content"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
-  add_index "info_values", ["info_field_id_id"], :name => "index_info_values_on_info_field_id_id"
+  add_index "info_values", ["info_field_id"], :name => "index_info_values_on_info_field_id"
 
   create_table "labs", :force => true do |t|
     t.string   "name"
