@@ -1,31 +1,32 @@
-= form_for @info_field do |f|
-  -if @info_field.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@info_field.errors.count, "error")} prohibited this info_field from being saved:"
-      %ul
-        - @info_field.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :associated_object
-    = f.text_field :associated_object
-  .field
-    = f.label :associated_role
-    = f.text_field :associated_role
-  .field
-    = f.label :label
-    = f.text_field :label
-  .field
-    = f.label :content_type
-    = f.text_field :content_type
-  .field
-    = f.label :content
-    = f.text_area :content
-  .field
-    = f.label :sort_order
-    = f.number_field :sort_order
-  .field
-    = f.label :category
-    = f.text_field :category
-  .actions
-    = f.submit 'Save'
+= form_for @info_field, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :label, :class => 'control-label'
+    .controls
+      = f.text_field :label, :class => 'text_field'
+  .control-group
+    = f.label :associated_object, :class => 'control-label'
+    .controls
+      = f.select :associated_object, options=(InfoField::ASSOCIATED_OBJECT_OPTIONS), {}, :class => "associated_object"
+  .control-group
+    = f.label :associated_role, :class => 'control-label'
+    .controls
+      = f.select :associated_role, options=(InfoField::ASSOCIATED_ROLE_OPTIONS), {}, :class => "associated_role"
+  .control-group
+    = f.label :content_type, :class => 'control-label'
+    .controls
+      = f.select :content_type, options=(InfoField::DISPLAY_TYPE_OPTIONS), {}, :class => "content_type"
+  .control-group
+    = f.label :content, :class => 'control-label'
+    .controls
+      = f.text_area :content, :class => 'text_area'
+  .control-group
+    = f.label :sort_order, :class => 'control-label'
+    .controls
+      = f.number_field :sort_order, :class => 'number_field'
+  .control-group
+    = f.label :category, :class => 'control-label'
+    .controls
+      = f.text_field :category, :class => 'text_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), info_fields_path, :class => 'btn'
