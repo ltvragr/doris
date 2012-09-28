@@ -1,0 +1,31 @@
+%h1 Listing info_fields
+
+%table
+  %tr
+    %th Associated object
+    %th Associated role
+    %th Label
+    %th Content type
+    %th Content
+    %th Sort order
+    %th Category
+    %th
+    %th
+    %th
+
+  - @info_fields.each do |info_field|
+    %tr
+      %td= info_field.associated_object
+      %td= info_field.associated_role
+      %td= info_field.label
+      %td= info_field.content_type
+      %td= info_field.content
+      %td= info_field.sort_order
+      %td= info_field.category
+      %td= link_to 'Show', info_field
+      %td= link_to 'Edit', edit_info_field_path(info_field)
+      %td= link_to 'Destroy', info_field, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Info field', new_info_field_path

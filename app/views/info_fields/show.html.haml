@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Associated object:
+  = @info_field.associated_object
+%p
+  %b Associated role:
+  = @info_field.associated_role
+%p
+  %b Label:
+  = @info_field.label
+%p
+  %b Content type:
+  = @info_field.content_type
+%p
+  %b Content:
+  = @info_field.content
+%p
+  %b Sort order:
+  = @info_field.sort_order
+%p
+  %b Category:
+  = @info_field.category
+
+= link_to 'Edit', edit_info_field_path(@info_field)
+\|
+= link_to 'Back', info_fields_path

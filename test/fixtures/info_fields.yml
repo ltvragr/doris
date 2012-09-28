@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  associated_object: MyString
+  associated_role: MyString
+  label: MyString
+  content_type: MyString
+  content: MyText
+  sort_order: 1
+  category: MyString
+
+two:
+  associated_object: MyString
+  associated_role: MyString
+  label: MyString
+  content_type: MyString
+  content: MyText
+  sort_order: 1
+  category: MyString

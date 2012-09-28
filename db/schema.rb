@@ -11,7 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120828214737) do
+ActiveRecord::Schema.define(:version => 20120928180921) do
+
+  create_table "info_fields", :force => true do |t|
+    t.string   "associated_object"
+    t.string   "associated_role"
+    t.string   "label"
+    t.string   "content_type"
+    t.text     "content"
+    t.integer  "sort_order"
+    t.string   "category"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  create_table "info_values", :force => true do |t|
+    t.integer  "info_field_id_id"
+    t.integer  "associated_object_id"
+    t.string   "associated_object_type"
+    t.text     "content"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+  end
+
+  add_index "info_values", ["info_field_id_id"], :name => "index_info_values_on_info_field_id_id"
 
   create_table "labs", :force => true do |t|
     t.string   "name"

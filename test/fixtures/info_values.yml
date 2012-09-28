@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  info_field_id: 
+  associated_object_id: 1
+  associated_object_type: MyString
+  content: MyText
+
+two:
+  info_field_id: 
+  associated_object_id: 1
+  associated_object_type: MyString
+  content: MyText

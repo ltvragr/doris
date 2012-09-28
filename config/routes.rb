@@ -1,5 +1,7 @@
 Doris::Application.routes.draw do
   
+  resources :info_fields
+
   resources :projects
   resources :labs
   resources :users
