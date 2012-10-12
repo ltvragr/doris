@@ -1,19 +1,7 @@
 - model_class = User
 .page-header
-  %h1=t '.title', :default => model_class.model_name.human
+  %h1=t '.title', :default => @user.name
 
-%p
-  %strong= model_class.human_attribute_name(:login) + ':'
-  %br
-  = @user.login
-%p
-  %strong= model_class.human_attribute_name(:first_name) + ':'
-  %br
-  = @user.first_name
-%p
-  %strong= model_class.human_attribute_name(:last_name) + ':'
-  %br
-  = @user.last_name
 %p
   %strong= model_class.human_attribute_name(:email) + ':'
   %br
@@ -22,6 +10,15 @@
   %strong= model_class.human_attribute_name(:status) + ':'
   %br
   = @user.status
+
+%fieldset
+  .info-fields
+    -@info_values.each do |value|
+      %strong= value.info_field.label
+      %br
+      = value.content
+      %br
+
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), users_path, :class => 'btn'
