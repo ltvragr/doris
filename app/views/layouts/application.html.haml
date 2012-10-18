@@ -36,6 +36,9 @@
     .container
 
       .row
+        .span10
+          = yield
+
         .span2
           .well.sidebar-nav
             %ul.nav.nav-list
@@ -44,9 +47,6 @@
               %li= link_to "Projects", "/projects"
               %li= link_to "Labs", "/labs"
               %li= link_to "Info Fields", "/info_fields"
-        .span10
-          = yield
-
       %footer
         %p &copy; Yale STC Developers 2012
     /
