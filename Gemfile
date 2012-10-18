@@ -8,7 +8,7 @@ gem 'rails', '3.2.6'
 gem 'sqlite3'
 gem 'haml'
 gem 'haml-rails', :group => :development
-
+gem 'mysql2'
 
 
 
