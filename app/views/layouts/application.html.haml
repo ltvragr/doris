@@ -20,7 +20,7 @@
   %body
     .navbar.navbar-fixed-top
       .navbar-inner
-        .container-fluid
+        .container
           %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
             %span.icon-bar
             %span.icon-bar
@@ -33,9 +33,12 @@
               %li= link_to "Labs", "/labs"
               %li= link_to "Info Fields", "/info_fields"
 
-    .container-fluid
+    .container
 
-      .row-fluid
+      .row
+        .span10
+          = yield
+
         .span2
           .well.sidebar-nav
             %ul.nav.nav-list
@@ -44,9 +47,6 @@
               %li= link_to "Projects", "/projects"
               %li= link_to "Labs", "/labs"
               %li= link_to "Info Fields", "/info_fields"
-        .span10
-          = yield
-    
       %footer
         %p &copy; Yale STC Developers 2012
     /

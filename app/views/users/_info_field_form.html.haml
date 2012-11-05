@@ -1,13 +1,13 @@
-=form_tag do
+= form_tag do
+  = hidden_field_tag :associated_object_id, @user.id
   - info_field_categories(@fields).each do |c|
     %h4=c
     - get_fields_for_category(c, @fields).each do |f|
       .control-group
-        = label_tag f.label, f.label, {:class => 'control-label'}
+        = label_tag f.id, f.label, {:class => 'control-label'}
         .controls
-          = text_field_tag f.label, f.content, :class => f.content_type
+          = text_field_tag f.id, f.content, :class => f.content_type
     %hr
   .form-actions
     = submit_tag nil, :class => 'btn btn-primary'
-
-
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), users_path, :class => 'btn'
