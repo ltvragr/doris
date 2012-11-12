@@ -14,6 +14,12 @@
         %strong= model_class.human_attribute_name(:status) + ':'
         %br
         = @user.status
+    .well
+      -if @user.projects == []
+        %p No projects :(
+      -else
+        -@user.projects.each do |project|
+          %strong= project.name
 
 %fieldset
   .info-fields

@@ -7,6 +7,10 @@
   %br
   = @project.name
 %p
+  %strong= model_class.human_attribute_name(:lab) + ':'
+  %br
+  = @project.labs.map(&:name).join("\n")
+%p
   %strong= model_class.human_attribute_name(:description) + ':'
   %br
   = @project.description
