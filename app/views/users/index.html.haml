@@ -17,10 +17,10 @@
     - @users.each do |user|
       %tr
         %td= link_to user.id, user_path(user)
-        %td= user.login
+        %td= link_to user.login, user
         %td= user.first_name
         %td= user.last_name
-        %td= user.email
+        %td= link_to user.email, user.email
         %td= user.status
         %td= user.role
         %td= user.created_at
