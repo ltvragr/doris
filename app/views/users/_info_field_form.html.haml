@@ -1,4 +1,4 @@
-= form_tag do
+= form_tag update_info_fields_path(@user.id) do
   = hidden_field_tag :associated_object_id, @user.id
   - info_field_categories(@fields).each do |c|
     %h4=c
@@ -6,7 +6,17 @@
       .control-group
         = label_tag f.id, f.label, {:class => 'control-label'}
         .controls
-          = text_field_tag f.id, f.content, :class => f.content_type
+          - content = get_value_for_field(@values, f, @user)
+          - if f.content_type == "text_field"
+            = text_field_tag "field"+f.id.to_s(), content
+          - elsif f.content_type == "text_area"
+            = text_area_tag "field"+f.id.to_s(), content
+          - elsif f.content_type == "select"
+            = render :partial => "info_field_form_select", :locals => {:f => f, :content => content}
+          - elsif f.content_type == "radio_button"
+            = render :partial => "info_field_form_radio_button", :locals => {:f => f, :content => content}
+          - elsif f.content_type == "check_box"
+            = render :partial => "info_field_form_check_box", :locals => {:f => f, :content => content}
     %hr
   .form-actions
     = submit_tag nil, :class => 'btn btn-primary'

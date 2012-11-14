@@ -1,0 +1,5 @@
+- options = get_field_as_array(f)
+- if options.length > 0
+  - options.each do |o|
+    = check_box_tag("field"+f.id.to_s(), o, o == content)
+    %span= o
