@@ -1,8 +1,6 @@
 - model_class = User
-.page-header
-  %h1
-    = t '.title', :default => @user.name
-    %small= @user.email
+= title @user.name
+= subtitle @user.email
 .row
   .span10
     .well
