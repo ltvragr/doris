@@ -4,9 +4,9 @@
 %table.table.table-striped
   %thead
     %tr
-      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:id).upcase
       %th= model_class.human_attribute_name(:name)
-      %th= model_class.human_attribute_name(:url)
+      %th= model_class.human_attribute_name(:url).upcase
       %th= model_class.human_attribute_name(:description)
       %th= model_class.human_attribute_name(:created_at)
       %th=t '.actions', :default => t("helpers.actions")
@@ -14,10 +14,10 @@
     - @labs.each do |lab|
       %tr
         %td= link_to lab.id, lab_path(lab)
-        %td= lab.name
-        %td= lab.url
+        %td= link_to lab.name, lab
+        %td= link_to lab.url, lab.url
         %td= lab.description
-        %td=l lab.created_at
+        %td= lab.created_at
         %td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_lab_path(lab), :class => 'btn btn-mini'
           = link_to t('.destroy', :default => t("helpers.links.destroy")), lab_path(lab), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
