@@ -2,11 +2,11 @@ class LabsController < ApplicationController
   # GET /labs
   # GET /labs.json
   def index
-    @labs = Lab.all
+    @labs = Lab.order(:name)
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @labs }
+      format.json { render json: @labs.where("name like ?", "%#{params[:q]}%") }
     end
   end
 

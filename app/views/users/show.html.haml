@@ -12,15 +12,9 @@
         %strong= model_class.human_attribute_name(:status) + ':'
         %br
         = @user.status
-      .info-fields
-        -@info_values.each do |value|
-          %strong= value.info_field.label
-          %br
-          = value.content
-          %br
 %h2 Projects
 %hr
-.row
+  .row
   -@user.projects.each do |proj|
     .span3
       %h3
@@ -29,6 +23,13 @@
       %p= proj.description
       %hr
       %p= proj.start_date.to_s + ' – ' + proj.end_date.to_s
+    .info-fields
+      -@info_values.each do |value|
+        %strong= value.info_field.label
+        %br
+        = value.content
+        %br
+
 
 %h2 Associated Labs
 %hr
