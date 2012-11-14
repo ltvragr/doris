@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 
   def edit_info_fields
     @user = User.find(params[:id])
-    @fields = InfoField.all()
+    @fields = InfoField.where("associated_object = 'User'")
     #@fields = InfoField.where("associated_object = 'User' AND associated_role = ?", @user.role)
     @values = InfoValue.where("associated_object_id = ? AND associated_object_type = 'User'", @user.id)
   end
@@ -50,10 +50,11 @@ class UsersController < ApplicationController
     params.each do |k, v|
       if k.starts_with? 'field'
         field_id = k[5].to_i
+        @field = InfoField.find(field_id)
         value = InfoValue.where("associated_object_id = ? AND associated_object_type = 'User' AND info_field_id = ?", @user.id, field_id)
-        if value.nil?
-          value.create({ :associated_object_id => @user.id, :associated_object_type => 'User',
-                          :info_field_id => field_id, :content => v})
+        if value.empty?
+          value = @field.info_values.build({ :associated_object_id => @user.id, :associated_object_type => 'User', :content => v})
+          value.save
         else
           value.first().update_attributes({:content => v})
         end

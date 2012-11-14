@@ -13,6 +13,7 @@ class InfoField < ActiveRecord::Base
 				               "Graduate Student" => "graduate"}
 
   attr_accessible :associated_object, :associated_role, :category, :content, :content_type, :label, :sort_order
+  has_many :info_values
 
 
 # this is only copied from Shifts now. need to actually implement on top of this when we do views.
