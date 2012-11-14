@@ -17,11 +17,13 @@
       %tr
         %td= link_to project.id, project_path(project)
         %td= project.name
-        %td= project.labs.map(&:name).join("\n")
+        %td
+          - project.labs.each do |lab|
+            =link_to lab.name, lab
         %td= project.description
         %td= project.start_date
         %td= project.end_date
-        %td=l project.created_at
+        %td= project.created_at
         %td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_project_path(project), :class => 'btn btn-mini'
           = link_to t('.destroy', :default => t("helpers.links.destroy")), project_path(project), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'

@@ -10,6 +10,10 @@ gem 'haml'
 gem 'haml-rails', :group => :development
 gem 'mysql2'
 
+gem "pry"
+gem "pry-rails"
+gem "pry-debugger"
+gem "pry-stack_explorer"
 
 
 # Gems used only for assets and not required

@@ -46,7 +46,20 @@ class UsersController < ApplicationController
   end
 
   def update_info_fields
-    
+    @user = User.find(params[:id])
+    params.each do |k, v|
+      if k.starts_with? 'field'
+        field_id = k[5].to_i
+        value = InfoValue.where("associated_object_id = ? AND associated_object_type = 'User' AND info_field_id = ?", @user.id, field_id)
+        if value.nil?
+          value.create({ :associated_object_id => @user.id, :associated_object_type => 'User',
+                          :info_field_id => field_id, :content => v})
+        else
+          value.first().update_attributes({:content => v})
+        end
+      end
+    end
+    redirect_to @user
   end
 
   # POST /users

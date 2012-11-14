@@ -1,8 +1,6 @@
 - model_class = User
-.page-header
-  %h1
-    = t '.title', :default => @user.name
-    %small= @user.email
+= title @user.name
+= subtitle @user.email
 .row
   .span10
     .well
@@ -14,21 +12,27 @@
         %strong= model_class.human_attribute_name(:status) + ':'
         %br
         = @user.status
-    .well
-      -if @user.projects == []
-        %p No projects :(
-      -else
-        -@user.projects.each do |project|
-          %strong= project.name
+%h2 Projects
+%hr
+  .row
+  -@user.projects.each do |proj|
+    .span3
+      %h3
+        = link_to proj.name, proj
+      %hr
+      %p= proj.description
+      %hr
+      %p= proj.start_date.to_s + ' – ' + proj.end_date.to_s
+    .info-fields
+      -@info_values.each do |value|
+        %strong= value.info_field.label
+        %br
+        = value.content
+        %br
 
-%fieldset
-  .info-fields
-    -@info_values.each do |value|
-      %strong= value.info_field.label
-      %br
-      = value.content
-      %br
 
+%h2 Associated Labs
+%hr
 
 .form-actions
   = link_to t('.back', :default => t("helpers.links.back")), users_path, :class => 'btn'
