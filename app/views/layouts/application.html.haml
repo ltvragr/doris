@@ -35,10 +35,11 @@
               %li= link_to "Info Fields", "/info_fields"
 
     .container
-      .page-header
-        %h1
-          = yield :title
-          %small= yield :subtitle
+      - if content_for?(:title)
+        .page-header
+          %h1
+            = yield :title
+            %small= yield :subtitle
       .row
         .span10
           = yield
