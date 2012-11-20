@@ -15,6 +15,10 @@ gem "pry-rails"
 gem "pry-debugger"
 gem "pry-stack_explorer"
 
+group :development, :test do
+  gem 'ffaker'
+end
+
 
 # Gems used only for assets and not required
 # in production environments by default.
