@@ -15,6 +15,8 @@ gem "pry-rails"
 gem "pry-debugger"
 gem "pry-stack_explorer"
 
+gem 'jquery-datatables-rails'
+
 group :development, :test do
   gem 'ffaker'
 end

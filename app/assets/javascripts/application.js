@@ -17,3 +17,10 @@
 //= require bootstrap
 //= require_tree .
 //= require jquery.tokeninput
+//= require dataTables/jquery.dataTables
+//= require dataTables/jquery.dataTables.bootstrap
+
+$('.datatable').dataTable({
+  "sDom": "<'row'<'span6'l><'span4'f>r>t<'row'<'span6'i><'span4'p>>",
+  "sPaginationType": "bootstrap"
+});
