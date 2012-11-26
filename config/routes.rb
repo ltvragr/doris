@@ -7,6 +7,7 @@ Doris::Application.routes.draw do
 
   match '/users/:id/edit_info_fields' => 'users#edit_info_fields', :as => :edit_info_fields
   match '/users/:id' => 'users#update_info_fields', :as => :update_info_fields
+  match '/logout' => 'users#logout', :as => :logout
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

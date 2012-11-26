@@ -7,8 +7,10 @@ gem 'rails', '3.2.6'
 
 gem 'sqlite3'
 gem 'haml'
-gem 'haml-rails', :group => :development
 gem 'mysql2'
+
+gem 'net-ldap'
+
 
 gem "pry"
 gem "pry-rails"
@@ -17,8 +19,13 @@ gem "pry-stack_explorer"
 
 gem 'jquery-datatables-rails'
 
+gem 'rubycas-client-rails'
+gem 'rubycas-client', '2.2.1'
+
+
 group :development, :test do
   gem 'ffaker'
+  gem 'haml-rails'
 end
 
 

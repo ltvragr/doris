@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
+  skip_filter :first_time_user, :only => [:new, :create]
+  
   def index
     @users = User.all
 
@@ -25,8 +27,13 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
-    @user = User.new
-
+    if current_user && current_user.is_admin?
+      @user = User.new
+    else
+      @user = User.new
+      @user.login = session[:cas_user] #default to current login
+    end
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
@@ -106,4 +113,11 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def logout
+    session[:cas_user], @current_user = nil
+    flash[:error] = "You've been logged out"
+    RubyCAS::Filter.logout(self)
+  end
+
 end
