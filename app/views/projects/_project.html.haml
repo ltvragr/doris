@@ -1,0 +1,5 @@
+.well
+  %h4= link_to project.name, project
+  %p= "Description: #{project.description}"
+  %h6 Users
+  %ul= render project.users
