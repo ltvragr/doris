@@ -8,9 +8,13 @@
     .controls
       = f.text_field :lab_tokens, data: {load: @project.labs}
   .control-group
+    = f.label :user_tokens, "Users", :class => 'control-label'
+    .controls
+      = f.text_field :user_tokens, data: {load: @project.users}
+  .control-group
     = f.label :description, :class => 'control-label'
     .controls
-      = f.text_area :description, :class => 'text_area'
+      = f.text_area :description, :class => 'text_area', rows: "10"
   .control-group
     = f.label :start_date, :class => 'control-label'
     .controls

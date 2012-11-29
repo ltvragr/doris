@@ -5,3 +5,8 @@ jQuery ->
 	$('#project_lab_tokens').tokenInput '/labs.json'
 		theme: 'facebook'
 		prePopulate: $('#project_lab_tokens').data('load')
+jQuery ->        
+    $('#project_user_tokens').tokenInput '/users.json'
+        theme: 'facebook'
+        prePopulate: $('#project_user_tokens').data('load')
+        propertyToSearch: "login"
