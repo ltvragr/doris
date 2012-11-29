@@ -15,8 +15,8 @@
   %tbody
     - @projects.each do |project|
       %tr
-        %td= link_to project.id, project_path(project)
-        %td= project.name
+        %td= project.id
+        %td= link_to project.name, project
         %td
           - project.labs.each do |lab|
             =link_to lab.name, lab
