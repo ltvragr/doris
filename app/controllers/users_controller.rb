@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
+  load_and_authorize_resource
   # GET /users
   # GET /users.json
   skip_filter :first_time_user, :only => [:new, :create]
   
   def index
-    @users = User.all
+    # @users = User.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +16,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     @info_values = InfoValue.sorted_values_for_object(@user)
 
     respond_to do |format|
@@ -27,12 +28,9 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
-    if current_user && current_user.is_admin?
-      @user = User.new
-    else
-      @user = User.new
-      @user.login = session[:cas_user] #default to current login
-    end
+    # @user = User.new
+    @user.login = session[:cas_user] #default to current login
+    @user.add_role :admin
     
     respond_to do |format|
       format.html # new.html.erb
@@ -42,18 +40,18 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
   end
 
   def edit_info_fields
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     @fields = InfoField.where("associated_object = 'User'")
     #@fields = InfoField.where("associated_object = 'User' AND associated_role = ?", @user.role)
     @values = InfoValue.where("associated_object_id = ? AND associated_object_type = 'User'", @user.id)
   end
 
   def update_info_fields
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     params.each do |k, v|
       if k.starts_with? 'field'
         field_id = k[5].to_i
@@ -73,7 +71,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(params[:user])
+    # @user = User.new(params[:user])
 
     respond_to do |format|
       if @user.save
@@ -89,7 +87,7 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -105,7 +103,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     @user.destroy
 
     respond_to do |format|

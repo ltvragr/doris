@@ -22,6 +22,9 @@ gem 'jquery-datatables-rails'
 gem 'rubycas-client-rails'
 gem 'rubycas-client', '2.2.1'
 
+gem 'cancan'
+gem 'rolify'
+
 
 group :development, :test do
   gem 'ffaker'

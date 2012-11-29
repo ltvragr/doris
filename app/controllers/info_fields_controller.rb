@@ -1,8 +1,9 @@
 class InfoFieldsController < ApplicationController
+  load_and_authorize_resource
   # GET /info_fields
   # GET /info_fields.json
   def index
-    @info_fields = InfoField.all
+    # @info_fields = InfoField.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +14,7 @@ class InfoFieldsController < ApplicationController
   # GET /info_fields/1
   # GET /info_fields/1.json
   def show
-    @info_field = InfoField.find(params[:id])
+    # @info_field = InfoField.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +25,7 @@ class InfoFieldsController < ApplicationController
   # GET /info_fields/new
   # GET /info_fields/new.json
   def new
-    @info_field = InfoField.new
+    # @info_field = InfoField.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +35,13 @@ class InfoFieldsController < ApplicationController
 
   # GET /info_fields/1/edit
   def edit
-    @info_field = InfoField.find(params[:id])
+    # @info_field = InfoField.find(params[:id])
   end
 
   # POST /info_fields
   # POST /info_fields.json
   def create
-    @info_field = InfoField.new(params[:info_field])
+    # @info_field = InfoField.new(params[:info_field])
 
     respond_to do |format|
       if @info_field.save
@@ -56,7 +57,7 @@ class InfoFieldsController < ApplicationController
   # PUT /info_fields/1
   # PUT /info_fields/1.json
   def update
-    @info_field = InfoField.find(params[:id])
+    # @info_field = InfoField.find(params[:id])
 
     respond_to do |format|
       if @info_field.update_attributes(params[:info_field])
@@ -72,7 +73,7 @@ class InfoFieldsController < ApplicationController
   # DELETE /info_fields/1
   # DELETE /info_fields/1.json
   def destroy
-    @info_field = InfoField.find(params[:id])
+    # @info_field = InfoField.find(params[:id])
     @info_field.destroy
 
     respond_to do |format|
