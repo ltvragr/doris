@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
+  #rescue_from CanCan::AccessDenied do |exception|
+
   def current_user
     @current_user ||= User.where(login: session[:cas_user]).first if session[:cas_user]
   end
@@ -19,4 +21,9 @@ class ApplicationController < ActionController::Base
   end
 
   protect_from_forgery
+
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = "Access denied."
+    redirect_to root_url
+  end
 end

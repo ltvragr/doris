@@ -1,8 +1,9 @@
 class LabsController < ApplicationController
+  load_and_authorize_resource
   # GET /labs
   # GET /labs.json
   def index
-    @labs = Lab.order(:name)
+    # @labs = Lab.order(:name)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -13,7 +14,7 @@ class LabsController < ApplicationController
   # GET /labs/1
   # GET /labs/1.json
   def show
-    @lab = Lab.find(params[:id])
+    # @lab = Lab.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -24,7 +25,7 @@ class LabsController < ApplicationController
   # GET /labs/new
   # GET /labs/new.json
   def new
-    @lab = Lab.new
+    # @lab = Lab.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,13 +35,13 @@ class LabsController < ApplicationController
 
   # GET /labs/1/edit
   def edit
-    @lab = Lab.find(params[:id])
+    # @lab = Lab.find(params[:id])
   end
 
   # POST /labs
   # POST /labs.json
   def create
-    @lab = Lab.new(params[:lab])
+    # @lab = Lab.new(params[:lab])
 
     respond_to do |format|
       if @lab.save
@@ -56,7 +57,7 @@ class LabsController < ApplicationController
   # PUT /labs/1
   # PUT /labs/1.json
   def update
-    @lab = Lab.find(params[:id])
+    # @lab = Lab.find(params[:id])
 
     respond_to do |format|
       if @lab.update_attributes(params[:lab])
@@ -72,7 +73,7 @@ class LabsController < ApplicationController
   # DELETE /labs/1
   # DELETE /labs/1.json
   def destroy
-    @lab = Lab.find(params[:id])
+    # @lab = Lab.find(params[:id])
     @lab.destroy
 
     respond_to do |format|
