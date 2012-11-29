@@ -33,6 +33,12 @@
               %li= link_to "Projects", "/projects"
               %li= link_to "Labs", "/labs"
               %li= link_to "Info Fields", "/info_fields"
+            %ul.nav.pull-right
+              - if current_user
+                %li= link_to("#{current_user.name}", current_user)
+                %li= link_to('(logout)', logout_path)
+              - else
+                %li= link_to('Login', root_path) 
 
     .container
       - if content_for?(:title)

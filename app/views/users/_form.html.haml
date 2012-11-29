@@ -2,7 +2,10 @@
   .control-group
     = f.label :login, :class => 'control-label'
     .controls
-      = f.text_field :login, :class => 'text_field'
+      - if (current_user && current_user.is_admin?) && @user.id == nil
+        = f.text_field :login, :class => 'text_field'
+      - else
+        = f.text_field :login, :class => 'text_field', :readonly => true, :input_html => {:value => @user.login}
   .control-group
     = f.label :first_name, :class => 'control-label'
     .controls
