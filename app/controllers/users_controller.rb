@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource
   # GET /users
   # GET /users.json
-  skip_filter :first_time_user, :only => [:new, :create]
+  skip_before_filter :first_time_user, :only => [:new, :create]
   
   def index
     # @users = User.all

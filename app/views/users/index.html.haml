@@ -24,6 +24,8 @@
         %td= user.role
         %td= user.created_at
         %td
-          = link_to 'edit', edit_user_path(user), :class => 'btn btn-mini'
-          = link_to 'destroy', user_path(user), :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => 'btn btn-mini btn-danger'
+          - if can? :edit, user
+            = link_to 'edit', edit_user_path(user), :class => 'btn btn-mini'
+          - if can? :destroy, user
+            = link_to 'destroy', user_path(user), :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => 'btn btn-mini btn-danger'
 = link_to 'new', new_user_path, :class => 'btn btn-primary'

@@ -12,7 +12,7 @@ class Ability
                 user_object == user
             end
             can :create, Project
-            can [:update, :edit], Project do |project|
+            can [:update, :edit, :destroy], Project do |project|
                 project.try(:users).include? user
             end
             can :logout, User
@@ -22,7 +22,7 @@ class Ability
                 user_object == user
             end
             can :create, Lab
-            can [:update, :edit], Lab do |lab|
+            can [:update, :edit, :destroy], Lab do |lab|
                 lab.try(:user).include? user
             end
             can :logout, User
