@@ -3,11 +3,13 @@ class Ability
 
   def initialize(user)
     user ||= User.new #guest user (not logged in)
-    if user.roles.empty? == false && user.has_role? :admin
+    if user.roles.empty?
+        can :read, :all
+        can :create, User
+    elsif user.has_role? :admin
         can :manage, :all
     else
         can :read, :all
-        can :create, User
         if user.has_role? :undergrad
             can [:update, :edit], User do |user_object|
                 user_object == user
