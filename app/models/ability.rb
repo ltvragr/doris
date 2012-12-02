@@ -7,6 +7,7 @@ class Ability
         can :manage, :all
     else
         can :read, :all
+        can :create, User
         if user.has_role? :undergrad
             can [:update, :edit], User do |user_object|
                 user_object == user
