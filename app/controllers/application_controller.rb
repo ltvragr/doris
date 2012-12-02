@@ -25,8 +25,9 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     flash[:error] = "Access denied."
     if current_user.nil?
-        first_time_user
+      redirect_to new_user_path
     else
       redirect_to root_url
+    end
   end
 end
