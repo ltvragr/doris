@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @users }
+      format.json { render json: @users.where("first_name || last_name || login like ?", "%#{params[:q]}%")}
     end
   end
 
@@ -30,6 +30,7 @@ class UsersController < ApplicationController
   def new
     # @user = User.new
     @user.login = session[:cas_user] #default to current login
+    
     @user.add_role :admin
     
     respond_to do |format|
@@ -87,8 +88,9 @@ class UsersController < ApplicationController
   # PUT /users/1
   # PUT /users/1.json
   def update
-    # @user = User.find(params[:id])
-
+    #@user = User.find(params[:id])
+    @user.roles.map{|r| @user.remove_role r.name}
+    @user.add_role params[:user][:status]
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }

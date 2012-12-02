@@ -23,4 +23,8 @@ module UsersHelper
   def get_field_as_array(field)
     entries = field.content.split(",")
   end
+
+  def options_for_user_status
+    [['Admin', 'admin'], ['Undergrad', 'undergrad'], ['PI', 'pi']]
+  end
 end
