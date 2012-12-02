@@ -13,7 +13,7 @@ class Ability
             end
             can :create, Project
             can [:update, :edit], Project do |project|
-                project.try(:user) == user
+                project.try(:users).include? user
             end
             can :logout, User
         end
@@ -23,7 +23,7 @@ class Ability
             end
             can :create, Lab
             can [:update, :edit], Lab do |lab|
-                lab.try(:user) == user
+                lab.try(:user).include? user
             end
             can :logout, User
         end

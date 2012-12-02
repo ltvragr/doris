@@ -21,7 +21,8 @@
   .control-group
     = f.label :status, :class => 'control-label'
     .controls
-      = f.text_field :status, :class => 'text_field'
+      = f.select :status, options_for_user_status, :selected => @user.status
+      //= f.text_field :status, :class => 'text_field'
   .hr  
   .form-actions
     = f.submit nil, :class => 'btn btn-primary'
