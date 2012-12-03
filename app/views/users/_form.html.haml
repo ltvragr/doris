@@ -2,10 +2,10 @@
   .control-group
     = f.label :login, :class => 'control-label'
     .controls
-      - if (current_user.has_role? :admin) && current_user.id == nil
+      - if can? :modify_netid, User
         = f.text_field :login, :class => 'text_field'
       - else
-        = f.text_field :login, :class => 'text_field', :readonly => true, :input_html => {:value => current_user.login}
+        = f.text_field :login, :class => 'text_field', :readonly => true, :input_html => {:value => @user.login}
   .control-group
     = f.label :first_name, :class => 'control-label'
     .controls
