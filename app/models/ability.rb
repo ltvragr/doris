@@ -6,9 +6,9 @@ class Ability
     puts user.new_record?
     if (user.new_record? == false && user.has_role?(:admin))
         can :manage, :all
+        can :modify_login, User
     else
         can :read, :all
-        can :create, User
         if user.has_role? :undergrad
             can [:update, :edit], User do |user_object|
                 user_object == user

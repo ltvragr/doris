@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
-    # @user = User.new
+    #@user = User.new
     @user.login = session[:cas_user] #default to current login
     
     @user.add_role :admin
@@ -73,7 +73,13 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     # @user = User.new(params[:user])
+    
+    if cannot? :modify_login, User
+      params[:user][:login] = session[:cas_user]
+    end
 
+    @user.roles.map{|r| @user.remove_role r.name}
+    @user.add_role params[:user][:status]
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -89,6 +95,9 @@ class UsersController < ApplicationController
   # PUT /users/1.json
   def update
     #@user = User.find(params[:id])
+    if cannot? :modify_login, User
+      params[:user][:login] = current_user.login
+    end
     @user.roles.map{|r| @user.remove_role r.name}
     @user.add_role params[:user][:status]
     respond_to do |format|
