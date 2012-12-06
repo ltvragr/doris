@@ -3,7 +3,8 @@ class Ability
 
   def initialize(user)
     user ||= User.new #guest user (not logged in)
-    if user.roles.empty? == false && user.has_role? :admin
+    puts user.new_record?
+    if (user.new_record? == false && user.has_role?(:admin))
         can :manage, :all
     else
         can :read, :all
