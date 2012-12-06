@@ -7,6 +7,7 @@ class Ability
         can :create, User
     elsif user.has_role? :admin
         can :manage, :all
+        can :view, Project
         can :modify_login, User
     else
         can :read, :all

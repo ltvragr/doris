@@ -86,3 +86,26 @@ else
   STDOUT.puts "\nPlease enter a whole number greater than 0."
   entered_num = STDIN.gets.chomp.to_i
 end
+
+####################
+#Seed Projects
+####################
+entered_num = ask_for_records("Projects")
+
+if entered_num.integer? && entered_num > 0
+  projects = entered_num.times.map do
+    Project.create! do |p|
+      p.name = Faker::Lorem.words(6)
+      p.description = Faker::Lorem.sentences(3)
+      p.start_date = Date.yesterday  #time_rand.to_date
+      p.end_date = Date.tomorrow #p.start_date + rand(300).days
+      p.users = User.all.sample(5)
+      p.labs = Lab.all.sample(rand(2))
+      puts p.save!
+    end
+  end
+  STDOUT.puts "\n#{entered_num} records successfully created!"
+else
+  STDOUT.puts "\nPlease enter a whole number greater than 0."
+  entered_num = STDIN.gets.chomp.to_i
+end
