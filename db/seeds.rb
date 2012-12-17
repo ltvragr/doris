@@ -97,11 +97,10 @@ if entered_num.integer? && entered_num > 0
     Project.create! do |p|
       p.name = Faker::Lorem.words(6)
       p.description = Faker::Lorem.sentences(3)
-      p.start_date = Date.yesterday  #time_rand.to_date
-      p.end_date = Date.tomorrow #p.start_date + rand(300).days
-      p.users = User.all.sample(5)
-      p.labs = Lab.all.sample(rand(2))
-      puts p.save!
+      p.start_date = Date.today - rand(300).days 
+      p.end_date = Date.today - rand(100) + rand(100)
+      p.users = User.all.sample(1+rand(5))
+      p.labs = Lab.all.sample(1+rand(1))
     end
   end
   STDOUT.puts "\n#{entered_num} records successfully created!"
