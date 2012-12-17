@@ -9,7 +9,6 @@
       %th last_name
       %th email
       %th status
-      %th role
       %th created at
       %th Actions
   %tbody
@@ -21,7 +20,6 @@
         %td= user.last_name
         %td= link_to user.email, user.email
         %td= user.status
-        %td= user.role
         %td= user.created_at
         %td
           - if can? :edit, user
