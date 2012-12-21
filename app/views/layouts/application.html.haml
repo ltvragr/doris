@@ -38,7 +38,7 @@
                 %li= link_to("#{current_user.name}", current_user)
                 %li= link_to('Logout', logout_path)
               - else
-                %li= link_to('Login', root_path) 
+                %li= link_to('Login', root_path)
 
     .container.content
       - if content_for?(:title)
@@ -60,7 +60,8 @@
               %li= link_to "Info Fields", "/info_fields"
       %footer
         %hr
-        %p &copy; Yale STC Developers 2012
+        .well
+          %p &copy; 2012–2013 Yale STC Developers
     /
       Javascripts
       \==================================================
