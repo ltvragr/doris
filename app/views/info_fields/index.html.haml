@@ -1,6 +1,6 @@
 - model_class = InfoField
-.page-header
-  %h1=t '.title', :default => model_class.model_name.human.pluralize
+- title model_class.model_name.human.pluralize
+
 %table.table.table-striped.datatable
   %thead
     %tr
