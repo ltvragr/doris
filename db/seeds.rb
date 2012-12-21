@@ -30,15 +30,15 @@ r = Random.new
 ####################
 #Seed Admin user
 ####################
-if User.all.empty?  
+if User.all.empty?
   USER_ATTRS = [:first_name, :last_name, :email, :login, :status]
   user_data = {}
-  STDOUT.puts "We need to create an account for you first."  
+  STDOUT.puts "We need to create an account for you first."
     USER_ATTRS.each do |a|
-      STDOUT.puts a.to_s  
+      STDOUT.puts a.to_s
       user_data[a] = STDIN.gets.chomp
     end
-  
+
   user = User.create!(user_data)
   user.add_role "admin"
   user.add_role "undergrad"
@@ -76,8 +76,8 @@ entered_num = ask_for_records("Labs")
 if entered_num.integer? && entered_num > 0
   labs = entered_num.times.map do
     Lab.create do |l|
-      l.name =Faker::Name.last_name + "'s Lab"
-      l.description =Faker::Company.catch_phrase
+      l.name = Faker::Name.last_name + "'s Lab"
+      l.description = Faker::HipsterIpsum.paragraph(4)
       l.url = Faker::Internet.email
     end
   end
@@ -95,9 +95,9 @@ entered_num = ask_for_records("Projects")
 if entered_num.integer? && entered_num > 0
   projects = entered_num.times.map do
     Project.create! do |p|
-      p.name = Faker::Lorem.words(6)
-      p.description = Faker::Lorem.sentences(3)
-      p.start_date = Date.today - rand(300).days 
+      p.name = Faker::Company.bs.titleize
+      p.description = Faker::Lorem.paragraph(10)
+      p.start_date = Date.today - rand(300).days
       p.end_date = Date.today - rand(100) + rand(100)
       p.users = User.all.sample(1+rand(5))
       p.labs = Lab.all.sample(1+rand(1))
