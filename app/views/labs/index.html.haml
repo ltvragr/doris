@@ -13,7 +13,7 @@
   %tbody
     - @labs.each do |lab|
       %tr
-        %td= link_to lab.id, lab_path(lab)
+        %td= lab.id
         %td= link_to lab.name, lab
         %td= link_to lab.url, lab.url
         %td= lab.description

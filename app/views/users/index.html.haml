@@ -3,18 +3,18 @@
 %table.table.table-striped.datatable
   %thead
     %tr
-      %th id
-      %th login
-      %th first_name
-      %th last_name
-      %th email
-      %th status
-      %th created at
+      %th ID
+      %th Login
+      %th First Name
+      %th Last Name
+      %th Email
+      %th Status
+      %th Created At
       %th Actions
   %tbody
     - @users.each do |user|
       %tr
-        %td= link_to user.id, user
+        %td= user.id
         %td= link_to user.login, user
         %td= user.first_name
         %td= user.last_name
