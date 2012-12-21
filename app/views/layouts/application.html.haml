@@ -33,6 +33,9 @@
               %li= link_to "Projects", "/projects"
               %li= link_to "Labs", "/labs"
               %li= link_to "Info Fields", "/info_fields"
+              %li.divider-vertical
+              %form.navbar-search.pull-left
+                %input{type: "text", class: "search-query", placeholder: "Search"}
             %ul.nav.pull-right
               - if current_user
                 %li= link_to("#{current_user.name}", current_user)
