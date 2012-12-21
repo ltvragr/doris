@@ -14,6 +14,7 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require bootstrap
+//= require bootstrap_custom
 //= require_tree .
 //= require jquery.tokeninput
 //= require dataTables/jquery.dataTables
