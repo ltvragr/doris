@@ -9,11 +9,15 @@
 %p
   %strong= model_class.human_attribute_name(:users) + ':'
   %br
-  = @project.users.map { |user| user.name + " " }
+  %ul
+    - @project.users.each do |user|
+      %li= link_to user.name, user
 %p
   %strong= model_class.human_attribute_name(:lab) + ':'
   %br
-  = @project.labs.map(&:name).join("\n")
+  %ul
+    - @project.labs.each do |lab|
+      %li= link_to lab.name, lab
 %p
   %strong= model_class.human_attribute_name(:description) + ':'
   %br
