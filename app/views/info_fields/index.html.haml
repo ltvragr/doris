@@ -29,5 +29,5 @@
         %td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_info_field_path(info_field), :class => 'btn btn-mini'
           = link_to t('.destroy', :default => t("helpers.links.destroy")), info_field_path(info_field), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
-
-= link_to t('.new', :default => t("helpers.links.new")), new_info_field_path, :class => 'btn btn-primary'
+.form-actions
+  = link_to t('.new', :default => t("helpers.links.new")), new_info_field_path, :class => 'btn btn-primary'

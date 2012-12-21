@@ -27,4 +27,5 @@
           - if can? :destroy, user
             = link_to 'destroy', user_path(user), :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => 'btn btn-mini btn-danger'
 - if can? :create, User
-  = link_to 'new', new_user_path, :class => 'btn btn-primary'
+  .form-actions
+    = link_to 'New', new_user_path, :class => 'btn btn-primary'
