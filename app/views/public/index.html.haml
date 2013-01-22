@@ -1,2 +1,14 @@
-%h1= "DORIS"
-=link_to "Log in", users_path
+.main-content
+  %h1= "DORIS"
+  %br
+  %h3
+    Welcome to the Database of Research in Sciences, the hub for science researches at Yale. Here you can browse through 
+    %a(href="/") 100 labs
+    , connect with 
+    %a(href="/") 200 students
+    , and 
+    %a(href="/") more
+    \.
+  %br
+  %div.button
+    =link_to "Log in with CAS", users_path
