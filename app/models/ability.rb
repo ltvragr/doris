@@ -25,7 +25,7 @@ class Ability
                 user_object == user
             end
             can :create, Lab
-            can [:update, :edit, :destroy], Lab do |lab|
+            can [:update, :edit, :destroy, :authorize_lab], Lab do |lab|
                 lab.try(:user).include? user
             end
             can :logout, User

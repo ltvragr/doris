@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121217224127) do
+ActiveRecord::Schema.define(:version => 20121230005957) do
 
   create_table "info_fields", :force => true do |t|
     t.string   "associated_object"
@@ -40,8 +40,9 @@ ActiveRecord::Schema.define(:version => 20121217224127) do
     t.string   "name"
     t.string   "url"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.boolean  "is_authorized"
   end
 
   create_table "labs_projects", :id => false, :force => true do |t|

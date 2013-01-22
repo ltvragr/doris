@@ -27,6 +27,8 @@ class LabsController < ApplicationController
   def new
     # @lab = Lab.new
 
+    params.merge!({:status => "pi"})
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @lab }

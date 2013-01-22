@@ -1,22 +1,30 @@
 - title @lab.name
+- if @lab.is_authorized?
+  %p
+    %strong Principal Investigator:
+    = render @lab.users.where("status like ?", "pi")
+  %p
+    %strong URL:
+    %br
+    = link_to @lab.url, @lab.url
+  %p
+    %strong Description:
+    %br
+    = @lab.description
+  %p
+    %strong Projects:
+    = render @lab.projects
+    = link_to 'New Project', new_project_path, class: :'btn', :lab_name => @lab.name
 
-%p
-  %strong Principal Investigator:
-  = render @lab.users.where("status like ?", "pi")
-%p
-  %strong URL:
-  %br
-  = link_to @lab.url, @lab.url
-%p
-  %strong Description:
-  %br
-  = @lab.description
-%p
-  %strong Projects:
-  = render @lab.projects
-  = link_to 'New Project', new_project_path, class: :'btn', :lab_name => @lab.name
 
+  .form-actions
+    = link_to 'Edit', edit_lab_path(@lab), :class => 'btn'
+    = link_to 'Destroy', lab_path(@lab), :method => "delete", :data => { :confirm => 'Are you sure?'}, :class => 'btn btn-danger'
 
-.form-actions
-  = link_to 'Edit', edit_lab_path(@lab), :class => 'btn'
-  = link_to 'Destroy', lab_path(@lab), :method => "delete", :data => { :confirm => 'Are you sure?'}, :class => 'btn btn-danger'
+- else
+  - if can? :authorize_lab, lab
+    %p
+      Yo PI, yooz gotz to approov dis lab!
+  - else
+    %p
+      Sorry, the PI must first approve this lab
