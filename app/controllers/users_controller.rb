@@ -10,24 +10,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
 
-      undergrad = []
-      pi = []
-      searched_users = @users.where("first_name || last_name || login like ?", "%#{params[:q]}%")
-      searched_users.each do |searched_user|
-        if searched_user.has_role? :undergrad
-          undergrad << searched_user
-        elsif searched_user.has_role? :pi
-          pi << searched_user
-        end
-      end
-      
-      params.merge!({:status => "undergrad"})
-
-      if params[:status] == "undergrad"
-        format.json { render json: searched_users }
-      elsif params[:status] == "pi"
-        format.json {render json: pi }
-      end
+      format.json{ render json: @users.where("first_name || last_name || login like ?", "%#{params[:q]}%")}
     end
   end
 
