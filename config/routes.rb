@@ -1,9 +1,12 @@
 Doris::Application.routes.draw do
   
+  get "home/index"
+
   resources :info_fields
   resources :labs
   resources :users
   resources :projects
+  resources :home
 
   match '/users/:id/edit_info_fields' => 'users#edit_info_fields', :as => :edit_info_fields
   match '/users/:id' => 'users#update_info_fields', :as => :update_info_fields
