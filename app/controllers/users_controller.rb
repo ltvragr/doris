@@ -20,9 +20,11 @@ class UsersController < ApplicationController
           pi << searched_user
         end
       end
+      
       params.merge!({:status => "undergrad"})
+
       if params[:status] == "undergrad"
-        format.json { render json: undergrad }
+        format.json { render json: searched_users }
       elsif params[:status] == "pi"
         format.json {render json: pi }
       end

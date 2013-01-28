@@ -9,3 +9,9 @@ jQuery ->
         preventDuplicates: true
         resultsFormatter: (user) -> "<li>" + user.first_name + " " + user.last_name + " (" + user.login + ")</li>"
         tokenFormatter: (user) -> "<li>" + user.first_name + " " + user.last_name + " (" + user.login + ")</li>"
+        onResult: (users) ->
+            pis = []
+            for user in users
+                if user.status == "pi"
+                    pis.push(user)
+            users = pis

@@ -15,3 +15,9 @@ jQuery ->
         preventDuplicates: true
         resultsFormatter: (user) -> "<li>" + user.first_name + " " + user.last_name + " (" + user.login + ")</li>"
         tokenFormatter: (user) -> "<li>" + user.first_name + " " + user.last_name + " (" + user.login + ")</li>"
+        onResult: (users) ->
+            undergrads = []
+            for user in users
+                if user.status == "undergrad"
+                    undergrads.push(user)
+            users = undergrads
