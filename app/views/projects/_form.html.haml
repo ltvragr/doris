@@ -8,9 +8,9 @@
     .controls
       = f.text_field :lab_tokens, data: {load: @project.labs}
   .control-group
-    = f.label :user_tokens, "Users", :class => 'control-label'
+    = f.label :user_tokens, "Students", :class => 'control-label'
     .controls
-      = f.text_field :user_tokens, data: {load: @project.users}
+      = f.text_field :user_tokens, data: {load: [JSON.parse(current_user.to_json)]}
   .control-group
     = f.label :description, :class => 'control-label'
     .controls

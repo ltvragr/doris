@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     #@user = User.new
     @user.login = session[:cas_user] #default to current login
     
-    @user.add_role :admin
+    @user.status == "admin"
     
     respond_to do |format|
       format.html # new.html.erb
@@ -79,8 +79,7 @@ class UsersController < ApplicationController
       params[:user][:login] = session[:cas_user]
     end
 
-    @user.roles.map{|r| @user.remove_role r.name}
-    @user.add_role params[:user][:status]
+    @user.status == params[:user][:status]
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
@@ -99,8 +98,7 @@ class UsersController < ApplicationController
     if cannot? :modify_login, User
       params[:user][:login] = current_user.login
     end
-    @user.roles.map{|r| @user.remove_role r.name}
-    @user.add_role params[:user][:status]
+    @user.status == params[:user][:status]
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
