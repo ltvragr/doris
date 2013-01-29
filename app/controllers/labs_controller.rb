@@ -83,4 +83,14 @@ class LabsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def authorize
+    @lab = Lab.find(params[:id])
+    @lab.is_authorized = true
+    @lab.save
+    respond_to do |format|
+      format.html {redirect_to @lab}
+      format.json { render json: @lab.errors, status: :unprocessable_entity }
+    end
+  end
 end
