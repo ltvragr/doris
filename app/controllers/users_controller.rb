@@ -9,7 +9,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @users.where("first_name || last_name || login like ?", "%#{params[:q]}%")}
+
+      format.json{ render json: @users.where("first_name || last_name || login like ?", "%#{params[:q]}%")}
     end
   end
 

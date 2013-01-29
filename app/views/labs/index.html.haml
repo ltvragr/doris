@@ -18,7 +18,10 @@
         %td= lab.description
         %td= lab.created_at
         %td
-          = link_to t('.edit', :default => t("helpers.links.edit")), edit_lab_path(lab), :class => 'btn btn-mini'
-          = link_to t('.destroy', :default => t("helpers.links.destroy")), lab_path(lab), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+          - if can? :edit, Lab
+            = link_to 'edit', edit_lab_path(lab), :class => 'btn btn-mini'
+          - if can? :destroy, Lab
+            = link_to 'destroy', lab_path(lab), :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => 'btn btn-mini btn-danger'
 .form-actions
-  = link_to t('.new', :default => t("helpers.links.new")), new_lab_path, :class => 'btn btn-primary'
+  - if can? :create, Lab
+    = link_to 'New', new_lab_path, :class => 'btn btn-primary'
