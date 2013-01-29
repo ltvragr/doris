@@ -33,6 +33,7 @@ gem 'chosen-rails'
 group :development, :test do
   gem 'ffaker'
   gem 'haml-rails'
+  gem 'guard-livereload'
 end
 
 
