@@ -60,17 +60,9 @@
             = yield :title
             %small= yield :subtitle
       .row
-        .span10
+        .span12
           = yield
-
-        .span2
-          .well.sidebar-nav
-            %ul.nav.nav-list
-              %li.nav-header Sidebar
-              %li= link_to "Users", "/users"
-              %li= link_to "Projects", "/projects"
-              %li= link_to "Labs", "/labs"
-              %li= link_to "Info Fields", "/info_fields"
+          
       %footer
         %hr
         .well
