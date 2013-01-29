@@ -1,7 +1,8 @@
+@import "bootstrap_overrides";
 @import "bootstrap";
 
 .content {
-  margin-top: 50px;
+  margin-top: $navbarHeight + 10px;
 }
 
 body {
