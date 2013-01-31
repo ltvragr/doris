@@ -1,8 +1,14 @@
+// Navbar
+
 $navbarHeight: 50px;
-$navbarBackgroundHighlight: #294d78;
-$navbarLinkColor: #d4d9db;
-$navbarLinkColorHover: darken($navbarLinkColor, 20%)
+$navbarBackgroundHighlight: lighten($main1, 5%);
+$navbarLinkColor: $neutral1;
+$navbarText: $navbarLinkColor;
+$navbarLinkColorHover: darken($navbarLinkColor, 20%);
 // $navbarLinkColorActive:
-// $navbarLinkBackgroundHover:
+$navbarLinkBackgroundHover: lighten($navbarBackgroundHighlight, 6%);
 // $navbarLinkBackgroundActive:
 // $navbarBrandColor:
+
+// Body
+// $bodyBackground: lighten($neutral1, 10%);
