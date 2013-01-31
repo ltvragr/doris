@@ -13,6 +13,16 @@ body {
 
 @import "bootstrap-responsive";
 
+// Janky fix for input-appends in the navbar, which is broken for some reason in
+// Bootstrap
+
+.navbar-form {
+  .input-append,
+  .input-prepend {
+    @include navbarVerticalAlign(30px);
+  }
+}
+
 @import "info_fields";
 @import "labs";
 @import "projects";
