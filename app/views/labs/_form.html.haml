@@ -2,7 +2,7 @@
   .control-group
     = f.label :name, :class => 'control-label'
     .controls
-      = f.text_field :name, :class => 'text_field'
+      = f.text_field :name, :class => 'text_field', value: current_user.last_name + "'s Lab"
   .control-group
     = f.label :user_tokens, "Principle Investigator", :class => 'control-label'
     .controls

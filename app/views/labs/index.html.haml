@@ -1,14 +1,13 @@
-- model_class = Lab
-- title model_class.model_name.human.pluralize
+%h1 Labs
 %table.table.table-striped.datatable
   %thead
     %tr
-      %th= model_class.human_attribute_name(:id).upcase
-      %th= model_class.human_attribute_name(:name)
-      %th= model_class.human_attribute_name(:url).upcase
-      %th= model_class.human_attribute_name(:description)
-      %th= model_class.human_attribute_name(:created_at)
-      %th=t '.actions', :default => t("helpers.actions")
+      %th ID
+      %th Name
+      %th URL
+      %th Description
+      %th Created At
+      %th Actions
   %tbody
     - @labs.each do |lab|
       %tr
@@ -24,4 +23,6 @@
             = link_to 'destroy', lab_path(lab), :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => 'btn btn-mini btn-danger'
 .form-actions
   - if can? :create, Lab
-    = link_to 'New', new_lab_path, :class => 'btn btn-primary'
+    = link_to 'New', new_lab_path, class: :'btn btn-primary'
+  - else
+    = link_to 'Request New', req_lab_path , class: :'btn btn-primary'

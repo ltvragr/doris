@@ -35,6 +35,12 @@ class LabsController < ApplicationController
     end
   end
 
+  def request_new
+    respond_to do |format|
+      format.html # new.html.erb
+    end
+  end
+
   # GET /labs/1/edit
   def edit
     # @lab = Lab.find(params[:id])
