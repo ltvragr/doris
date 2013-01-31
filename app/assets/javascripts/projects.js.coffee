@@ -21,3 +21,4 @@ jQuery ->
                 if user.status == "undergrad"
                     undergrads.push(user)
             users = undergrads
+            

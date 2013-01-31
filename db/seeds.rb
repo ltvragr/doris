@@ -40,8 +40,7 @@ if User.all.empty?
     end
 
   user = User.create!(user_data)
-  user.add_role "admin"
-  user.add_role "undergrad"
+  user.status == "admin"
   user.save!
 end
 

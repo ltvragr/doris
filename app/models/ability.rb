@@ -4,13 +4,13 @@ class Ability
   def initialize(user)
     user ||= User.new #guest user (not logged in)
     puts user.new_record?
-    if (user.new_record? == false && user.has_role?(:admin))
+    if (user.new_record? == false && user.status == "admin")
         can :manage, :all
         can :view, Project
         can :modify_login, User
     else
         can :read, :all
-        if user.has_role? :undergrad
+        if user.status == "undergrad"
             can [:update, :edit], User do |user_object|
                 user_object == user
             end
@@ -20,13 +20,13 @@ class Ability
             end
             can :logout, User
         end
-        if user.has_role? :pi
+        if user.status == "pi"
             can [:update, :edit], User do |user_object|
                 user_object == user
             end
             can :create, Lab
             can [:update, :edit, :destroy, :authorize_lab], Lab do |lab|
-                lab.try(:user).include? user
+                lab.try(:users).include? user
             end
             can :logout, User
         end
