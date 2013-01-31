@@ -11,7 +11,6 @@ class Ability
     else
         can :read, :all
         if user.status == "undergrad"
-            can :request_new, Lab
             can [:update, :edit], User do |user_object|
                 user_object == user
             end
@@ -20,7 +19,7 @@ class Ability
                 project.try(:users).include? user
             end
             can :logout, User
-            can :request, Lab
+            can :create, Lab
         end
         if user.status == "pi"
             can [:update, :edit], User do |user_object|

@@ -22,7 +22,7 @@
           - if can? :destroy, Lab
             = link_to 'destroy', lab_path(lab), :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => 'btn btn-mini btn-danger'
 .form-actions
-  - if can? :create, Lab
-    = link_to 'New', new_lab_path, class: :'btn btn-primary'
+  - if current_user.status == "undergrad"
+    = link_to 'Request New', new_lab_path , class: :'btn btn-primary'
   - else
-    = link_to 'Request New', req_lab_path , class: :'btn btn-primary'
+    = link_to 'New', new_lab_path, class: :'btn btn-primary'

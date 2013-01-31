@@ -27,17 +27,9 @@ class LabsController < ApplicationController
   def new
     # @lab = Lab.new
 
-    params.merge!({:status => "pi"})
-
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @lab }
-    end
-  end
-
-  def request_new
-    respond_to do |format|
-      format.html # new.html.erb
     end
   end
 
@@ -51,6 +43,12 @@ class LabsController < ApplicationController
   def create
     # @lab = Lab.new(params[:lab])
 
+    if current_user.status == "undergrad"
+      @lab.is_authorized = false
+    else
+      @lab.is_authorized = true
+    end
+    
     respond_to do |format|
       if @lab.save
         format.html { redirect_to @lab, notice: 'Lab was successfully created.' }

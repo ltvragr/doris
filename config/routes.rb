@@ -3,9 +3,7 @@ Doris::Application.routes.draw do
   get "home/index", as: :home
 
   resources :info_fields
-  resources :labs do
-      get 'request_new', on: :collection
-  end
+  resources :labs
   resources :users
   resources :projects
   resources :home
