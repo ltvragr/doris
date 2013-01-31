@@ -28,12 +28,13 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.brand(href="/home") Doris
+          %a.brand(href="/home")
+            %i.icon-circle{title: 'Doris: Database of Research in Sciences'}
           .container.nav-collapse
             %ul.nav
-              %form.navbar-form.pull-left
+              %form.navbar-form.pull-left{id: 'logo-search'}
                 .input-append
-                  %input{id: 'logo-search', type: "text", placeholder: "Doris"}
+                  %input.span3{type: "text", placeholder: "Doris"}
                   %button.btn{type: 'submit'}
                     %i.icon-search
               %li= link_to "Projects", projects_path
