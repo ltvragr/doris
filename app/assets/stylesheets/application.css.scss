@@ -13,14 +13,18 @@ body {
 
 #logo-search {
   margin-right: 10px;
+
+  // Fixes invisible popover content bug in navbar input-append
+  .popover-content {
+    font-size: $baseFontSize;
+  }
 }
 
 @import "bootstrap-responsive";
 
 @import "font-awesome";
 
-// Janky fix for input-appends in the navbar, which is broken for some reason in
-// Bootstrap
+// Janky fix for input-appends in the navbar
 
 .navbar-form {
   .input-append,
