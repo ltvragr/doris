@@ -13,7 +13,6 @@ Doris::Application.routes.draw do
   match '/logout' => 'users#logout', :as => :logout
   match '/authorize/:id' => 'labs#authorize', :as => :authorize
 
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

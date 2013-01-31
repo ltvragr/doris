@@ -8,17 +8,11 @@ jQuery ->
 		preventDuplicates: true
 		noResultsText: "Your lab is not listed. Make a new lab <a href='../labs/new'> here </a>"
 jQuery ->        
-    $('#project_user_tokens').tokenInput '/users.json'
+    $('#project_user_tokens').tokenInput '/users.json?source=project'
         theme: 'facebook'
         prePopulate: $('#project_user_tokens').data('load')
         propertyToSearch: "login"
         preventDuplicates: true
         resultsFormatter: (user) -> "<li>" + user.first_name + " " + user.last_name + " (" + user.login + ")</li>"
         tokenFormatter: (user) -> "<li>" + user.first_name + " " + user.last_name + " (" + user.login + ")</li>"
-        onResult: (users) ->
-            undergrads = []
-            for user in users
-                if user.status == "undergrad"
-                    undergrads.push(user)
-            users = undergrads
             

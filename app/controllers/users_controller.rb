@@ -8,9 +8,14 @@ class UsersController < ApplicationController
     # @users = User.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      if params[:source] == "project"
+        return_users = @users.where("first_name || last_name || login like ?", "%#{params[:q]}%").where(:status => 'undergrad')
+      elsif params[:source] == "lab"
+        return_users = @users.where("first_name || last_name || login like ?", "%#{params[:q]}%").where(:status => 'pi')
+      end
 
-      format.json{ render json: @users.where("first_name || last_name || login like ?", "%#{params[:q]}%")}
+      format.html # index.html.erb
+      format.json{ render json: return_users }
     end
   end
 

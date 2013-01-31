@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121230005957) do
+ActiveRecord::Schema.define(:version => 20130131212611) do
 
   create_table "info_fields", :force => true do |t|
     t.string   "associated_object"
@@ -44,6 +44,13 @@ ActiveRecord::Schema.define(:version => 20121230005957) do
     t.datetime "updated_at",    :null => false
     t.boolean  "is_authorized"
   end
+
+  create_table "labs_principles", :id => false, :force => true do |t|
+    t.integer "lab_id"
+    t.integer "user_id"
+  end
+
+  add_index "labs_principles", ["lab_id", "user_id"], :name => "index_labs_principles_on_lab_id_and_user_id"
 
   create_table "labs_projects", :id => false, :force => true do |t|
     t.integer "lab_id"

@@ -26,7 +26,7 @@ class Ability
             end
             can :create, Lab
             can [:update, :edit, :destroy, :authorize_lab], Lab do |lab|
-                lab.try(:users).include? user
+                lab.try(:principles).include? user
             end
             can :logout, User
         end

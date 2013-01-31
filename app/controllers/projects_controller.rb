@@ -15,7 +15,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     # @project = Project.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
@@ -27,8 +26,10 @@ class ProjectsController < ApplicationController
   def new
     # @project = Project.new
 
-    params.merge!({:status => "undergrad"})
-
+    # params.merge!({:status => "undergrad"})
+    @project = Project.new
+    @project.labs << Lab.find(params[:lab_id]) if params[:lab_id]
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @project }
