@@ -14,7 +14,7 @@
   %p
     %strong Projects:
     = render @lab.projects
-    = link_to 'New Project', new_project_path, class: :'btn', :lab_name => @lab.name
+    = link_to 'New Project', new_project_path(:lab_id => @lab.id), class: :'btn' 
 
 
   .form-actions
