@@ -34,7 +34,8 @@
               %form.navbar-form.pull-left
                 .input-append
                   %input{id: 'logo-search', type: "text", placeholder: "Doris"}
-                  %button.btn{type: 'submit'} Search
+                  %button.btn{type: 'submit'}
+                    %i.icon-search
               %li= link_to "Projects", projects_path
               %li= link_to "Labs", labs_path
               %li= link_to "Users", users_path
