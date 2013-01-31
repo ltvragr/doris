@@ -7,3 +7,36 @@
   float: left;
   margin-right: 15px;
 }
+
+.highlight {
+  background-color: #555;
+  color: #fff;
+}
+
+.slider_wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.slider_parent {
+  height: 450px;
+  width: 3000px;
+  margin-left: 0px;
+}
+
+.to_button {
+  width: 70px;
+  height: 490px;
+  background-color: rgba(0,0,0,.05);
+  position: absolute;
+}
+
+.button_highlight {
+  background-color: rgba(0,0,0,.5);
+}
+
+.to_right {
+  right: 0px;
+  top: 0px;
+}
