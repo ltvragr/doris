@@ -27,7 +27,7 @@
   - if can? :authorize_lab, @lab
     %p
       Dear PI, you must approve this lab
-    = button_to 'Approve Lab', authorize_path
+    = button_to 'Approve Lab', authorize_path, class: :'btn'
   - else
     %p
       Sorry, the PI must first approve this lab
