@@ -19,13 +19,13 @@ class Ability
                 project.try(:users).include? user
             end
             can :logout, User
-            can :create, Lab
+            can [:request, :create], Lab
         end
         if user.status == "pi"
             can [:update, :edit], User do |user_object|
                 user_object == user
             end
-            can :create, Lab
+            can [:approve, :create], Lab
             can [:update, :edit, :destroy, :authorize_lab], Lab do |lab|
                 lab.try(:principles).include? user
             end

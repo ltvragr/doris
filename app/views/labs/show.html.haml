@@ -2,7 +2,7 @@
 - if @lab.is_authorized?
   %p
     %strong Principal Investigator:
-    = render @lab.users.where("status like ?", "pi")
+    = render @lab.principles.where("status like ?", "pi")
   %p
     %strong URL:
     %br

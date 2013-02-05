@@ -51,7 +51,11 @@ class LabsController < ApplicationController
     
     respond_to do |format|
       if @lab.save
-        format.html { redirect_to @lab, notice: 'Lab was successfully created.' }
+        if current_user.status == "undergrad"
+          format.html { redirect_to labs_url, notice: 'Lab was successfully created.' }
+        else
+          format.html { redirect_to @lab, notice: 'Lab was successfully created.' }
+        end
         format.json { render json: @lab, status: :created, location: @lab }
       else
         format.html { render action: "new" }
