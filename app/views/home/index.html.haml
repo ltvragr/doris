@@ -5,5 +5,7 @@
   .slider_parent
     -@feed.entries.each do |entry|
       = render :partial => "block", :locals => {:entry => entry}
+    -@feed2.entries.each do |entry|
+      = render :partial => "block", :locals => {:entry => entry}
   %div.to_button.to_right
 

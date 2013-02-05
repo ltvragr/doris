@@ -3,4 +3,4 @@
   -entry.categories.each do |category|
     %span.label.label-info=category
   %hr.hover_only.hidden
-  %p.hover_only.hidden=entry.summary
+  %p.hover_only.hidden=entry.summary.gsub(/<img[^>]*>/, '')
