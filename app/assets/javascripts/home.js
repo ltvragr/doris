@@ -6,8 +6,10 @@ $(document).ready(function(){
 
 $('.block').hover(function() {
   $(this).addClass('highlight');
+  $(this).find(".hover_only").removeClass('hidden');
 }, function() {
   $(this).removeClass('highlight');
+  $(this).find(".hover_only").addClass('hidden');
 });
 
 $('.to_button').hover(function() {
@@ -18,6 +20,7 @@ $('.to_button').hover(function() {
 
 $(".to_left").click(function() {
   var offset = parseInt($('.slider_parent').css('margin-left'));
+  console.log(offset)
   if (offset < -100) {
     $('.slider_parent').animate({
       marginLeft: '+=375',
@@ -28,6 +31,7 @@ $(".to_left").click(function() {
 $(".to_right").click(function() {
   var offset = parseInt($('.slider_parent').css('margin-left'));
   var width = parseInt($('.slider_parent').css('width')) * -1;
+  console.log(offset, width)
   if (offset > width + 1300) {
     $('.slider_parent').animate({
       marginLeft: '-=375',
