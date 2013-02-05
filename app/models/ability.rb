@@ -25,8 +25,10 @@ class Ability
             can [:update, :edit], User do |user_object|
                 user_object == user
             end
-            can [:approve, :create], Lab
-            can [:update, :edit, :destroy, :authorize_lab], Lab do |lab|
+            if !user.labs.any?          # limit one lab per PI
+                can [:create], Lab 
+            end
+            can [:update, :edit, :destroy, :approve], Lab do |lab|
                 lab.try(:principles).include? user
             end
             can :logout, User

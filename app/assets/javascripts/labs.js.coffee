@@ -7,5 +7,6 @@ jQuery ->
         prePopulate: $('#lab_user_tokens').data('load')
         propertyToSearch: "login"
         preventDuplicates: true
+        tokenLimit: 1
         resultsFormatter: (user) -> "<li>" + user.first_name + " " + user.last_name + " (" + user.login + ")</li>"
         tokenFormatter: (user) -> "<li>" + user.first_name + " " + user.last_name + " (" + user.login + ")</li>"

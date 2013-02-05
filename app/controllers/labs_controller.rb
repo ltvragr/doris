@@ -41,10 +41,14 @@ class LabsController < ApplicationController
   # POST /labs
   # POST /labs.json
   def create
-    # @lab = Lab.new(params[:lab])
 
+    # Fill in missing fields for a requested lab
     if current_user.status == "undergrad"
       @lab.is_authorized = false
+      @lab.name = @lab.principles.first.last_name + " Lab"
+      @lab.url = ""
+      @lab.description = "This lab is unauthorized."
+      #send an email to PI
     else
       @lab.is_authorized = true
     end
