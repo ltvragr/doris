@@ -18,8 +18,6 @@
     %link(href="images/favicon.ico" rel="shortcut icon")
     %link(href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,600,700' rel='stylesheet' type='text/css')
 
-
-
   %body
     .navbar.navbar-fixed-top
       .navbar-inner
@@ -30,32 +28,11 @@
             %span.icon-bar
           %a.brand(href="/home")
             %i.icon-circle{title: 'Doris: Database of Research in Sciences'}
-          .container.nav-collapse
-            %ul.nav
-              %form.navbar-form.pull-left{id: 'logo-search'}
-                .input-append
-                  %input.span3{id: 'logo-search-field', type: 'text', placeholder: 'Doris', rel: 'popover', title: 'Search Doris', :"data-content" => 'Start typing here to search all of Doris (including projects, labs, users, resources, and news).', :"data-placement" => 'bottom'}
-                  %button.btn{type: 'submit'}
-                    %i.icon-search
-              %li= link_to "Projects", projects_path
-              %li= link_to "Labs", labs_path
-              %li= link_to "Users", users_path
-              %li= link_to "Info Fields", info_fields_path
-              %li= link_to "News", "#"
-              %li= link_to "Resources", "#"
-            %ul.nav.pull-right
-              %li.divider-vertical
-              - if current_user
-                %li.dropdown
-                  %a.dropdown-toggle{href: "#", :"data-toggle" => "dropdown"}
-                    = current_user.name
-                    %b.caret
-                  %ul.dropdown-menu
-                    %li= link_to 'My Profile', current_user
-                    %li= link_to 'Edit My Profile', edit_user_path(current_user)
-                    %li= link_to 'Logout', logout_path
-              - else
-                %li= link_to 'Login', root_path
+          -if content_for? :main_nav
+            = yield :main_nav
+          -else
+            = render partial: 'layouts/main_nav', locals: { current_tab: nil }
+            = yield :main_nav
 
     .container.content
 
