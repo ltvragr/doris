@@ -19,6 +19,8 @@ gem "pry-rails"
 gem "pry-debugger"
 gem "pry-stack_explorer"
 
+gem "feedzirra"
+
 gem 'jquery-datatables-rails'
 
 gem 'rubycas-client-rails'
