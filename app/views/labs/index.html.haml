@@ -17,12 +17,12 @@
         %td= lab.description
         %td= lab.created_at
         %td
-          - if can? :edit, Lab
+          - if can? :edit, lab
             = link_to 'edit', edit_lab_path(lab), :class => 'btn btn-mini'
-          - if can? :destroy, Lab
+          - if can? :destroy, lab
             = link_to 'destroy', lab_path(lab), :method => :delete, :data => { :confirm => 'Are you sure?'}, :class => 'btn btn-mini btn-danger'
 .form-actions
   - if cannot? :approve, Lab
     = link_to 'Request New', new_lab_path , class: :'btn btn-primary'
-  - else
+  - elsif !@current_user.labs.any?
     = link_to 'New', new_lab_path, class: :'btn btn-primary'
