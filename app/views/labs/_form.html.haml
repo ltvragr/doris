@@ -3,11 +3,11 @@
     .control-group
       = f.label :name, "Lab Name", :class => 'control-label'
       .controls
-        = f.text_field :name, :class => 'text_field', value: current_user.last_name + "'s Lab"
+        = f.text_field :name, :class => 'text_field', value: current_user.last_name + " Lab"
     .control-group
       = f.label :user_tokens, "Principle Investigator", :class => 'control-label'
       .controls
-        = f.text_field :user_tokens, data: {load: [JSON.parse(current_user.to_json)]}
+        = f.text_field :user_tokens, data: {load: [JSON.parse(current_user.to_json.insert(-2, ",\"readonly\":true"))]}
     .control-group
       = f.label :url, :class => 'control-label'
       .controls
