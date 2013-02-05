@@ -7,7 +7,10 @@
     .control-group
       = f.label :user_tokens, "Principle Investigator", :class => 'control-label'
       .controls
-        = f.text_field :user_tokens, data: {load: [JSON.parse(current_user.to_json.insert(-2, ",\"readonly\":true"))]}
+        - if current_user.status == "admin"
+          = f.text_field :user_tokens
+        - else
+          = f.text_field :user_tokens, data: {load: [JSON.parse(current_user.to_json.insert(-2, ",\"readonly\":true"))]}
     .control-group
       = f.label :url, :class => 'control-label'
       .controls

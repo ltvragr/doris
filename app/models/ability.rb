@@ -25,7 +25,7 @@ class Ability
             can [:update, :edit], User do |user_object|
                 user_object == user
             end
-            if !user.labs.any?          # limit one lab per PI
+            if user.labs.empty?          # limit one lab per PI
                 can [:create], Lab 
             end
             can [:update, :edit, :destroy, :approve], Lab do |lab|
