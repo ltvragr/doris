@@ -3,7 +3,7 @@
 .slider_wrapper
   %div.to_button.to_left
   .slider_parent
-    -for i in 1..10
-      = render :partial => "block"
+    -@feed.entries.each do |entry|
+      = render :partial => "block", :locals => {:entry => entry}
   %div.to_button.to_right
 
