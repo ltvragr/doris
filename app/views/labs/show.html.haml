@@ -24,7 +24,7 @@
       = link_to 'Destroy', lab_path(@lab), :method => "delete", :data => { :confirm => 'Are you sure?'}, :class => 'btn btn-danger'
 
 - else
-  - if can? :authorize_lab, @lab
+  - if can? :approve, @lab
     %p
       Dear PI, you must approve this lab
     = button_to 'Approve Lab', authorize_path, class: :'btn'
