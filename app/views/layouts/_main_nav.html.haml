@@ -3,7 +3,7 @@
     %ul.nav
       %form.navbar-form.pull-left{id: 'logo-search'}
         .input-append
-          %input.span3{id: 'logo-search-field', type: 'text', placeholder: 'Doris', rel: 'popover', title: 'Search Doris', :"data-content" => 'Start typing here to search all of Doris (including projects, labs, users, resources, and news).', :"data-placement" => 'bottom'}
+          %input.span3{id: 'logo-search-field', type: 'search', placeholder: 'Doris', rel: 'popover', title: 'Search Doris', :"data-content" => 'Start typing here to search all of Doris (including projects, labs, users, resources, and news).', :"data-placement" => 'bottom'}
           %button.btn{type: 'submit'}
             %i.icon-search
       = nav_tab "Projects", projects_path, current: current_tab

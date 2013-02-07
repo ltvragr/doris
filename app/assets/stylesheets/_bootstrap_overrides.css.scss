@@ -4,11 +4,19 @@ $navbarHeight: 50px;
 $navbarBackgroundHighlight: lighten($main1, 5%);
 $navbarLinkColor: $neutral1;
 $navbarText: $navbarLinkColor;
-$navbarLinkColorHover: darken($navbarLinkColor, 20%);
-// $navbarLinkColorActive:
+$navbarLinkColorHover: $navbarLinkColor;
+$navbarLinkColorActive: darken($navbarLinkColor, 3%);
 $navbarLinkBackgroundHover: lighten($navbarBackgroundHighlight, 6%);
 // $navbarLinkBackgroundActive:
-// $navbarBrandColor:
+// $navbarBrandColor: $accent1;
+
+$baseFontFamily: 'Titillium Web', Helvetica, sans-serif;
+
+.navbar .brand {
+  &:hover {
+    color: $accent1;
+  }
+}
 
 // Body
 // $bodyBackground: lighten($neutral1, 10%);

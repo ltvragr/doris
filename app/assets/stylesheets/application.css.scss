@@ -1,14 +1,11 @@
 @import "colors";
+@import "mixins";
 
 @import "bootstrap_overrides";
 @import "bootstrap";
 
 .content {
   margin-top: $navbarHeight + 10px;
-}
-
-body {
-  font-family: 'Titillium Web',sans-serif;
 }
 
 #logo-search {
@@ -18,6 +15,23 @@ body {
   .popover-content {
     font-size: $baseFontSize;
   }
+
+  input {
+    height: $baseLineHeight * 1.4;
+    @include placeholder-extended($textColor, $baseFontFamily, ($baseFontSize * 2));
+  }
+
+  .btn {
+    height: $baseLineHeight * 1.4 + 10px;
+  }
+}
+
+.navbar .brand {
+  font-size: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 8px;
+  @include navbarVerticalAlign(38px);
 }
 
 @import "bootstrap-responsive";
@@ -29,7 +43,7 @@ body {
 .navbar-form {
   .input-append,
   .input-prepend {
-    @include navbarVerticalAlign(30px);
+    @include navbarVerticalAlign(38px);
   }
 }
 

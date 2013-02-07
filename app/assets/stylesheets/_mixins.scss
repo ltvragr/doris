@@ -1,0 +1,17 @@
+@mixin placeholder-extended($color: $placeholderText, $font: $baseFontFamily, $size: $baseFontSize) {
+  &:-moz-placeholder {
+    font-family: $font;
+    font-size: $size;
+    color: $color;
+  }
+  &:-ms-input-placeholder {
+    font-family: $font;
+    font-size: $size;
+    color: $color;
+  }
+  &::-webkit-input-placeholder {
+    font-family: $font;
+    font-size: $size;
+    color: $color;
+  }
+}
