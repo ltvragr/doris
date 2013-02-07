@@ -1,0 +1,33 @@
+#logo-search {
+  margin-right: 10px;
+
+  // Fixes invisible popover content bug in navbar input-append
+  .popover-content {
+    font-size: $baseFontSize;
+  }
+
+  input {
+    height: $baseLineHeight * 1.4;
+    @include placeholder-extended($textColor, $baseFontFamily, ($baseFontSize * 2));
+  }
+
+  .btn {
+    height: $baseLineHeight * 1.4 + 10px;
+  }
+}
+
+.navbar .brand {
+  font-size: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-right: 8px;
+  @include navbarVerticalAlign(38px);
+}
+
+// Janky fix for input-appends in the navbar
+.navbar-form {
+  .input-append,
+  .input-prepend {
+    @include navbarVerticalAlign(38px);
+  }
+}
