@@ -1,0 +1,27 @@
+- content_for :main_nav do
+  .container.nav-collapse
+    %ul.nav
+      %form.navbar-form.pull-left{id: 'logo-search'}
+        .input-append
+          %input.span3{id: 'logo-search-field', type: 'search', placeholder: 'Doris', rel: 'popover', title: 'Search Doris', :"data-content" => 'Start typing here to search all of Doris (including projects, labs, users, resources, and news).', :"data-placement" => 'bottom'}
+          %button.btn{type: 'submit'}
+            %i.icon-search
+      = nav_tab "Projects", projects_path, current: current_tab
+      = nav_tab "Labs", labs_path, current: current_tab
+      = nav_tab "Users", users_path, current: current_tab
+      = nav_tab "Info Fields", info_fields_path, current: current_tab
+      = nav_tab "News", "#", current: current_tab
+      = nav_tab "Resources", "#", current: current_tab
+    %ul.nav.pull-right
+      %li.divider-vertical
+      - if current_user
+        %li.dropdown
+          %a.dropdown-toggle{href: "#", :"data-toggle" => "dropdown"}
+            = current_user.name
+            %b.caret
+          %ul.dropdown-menu
+            %li= link_to 'My Profile', current_user
+            %li= link_to 'Edit My Profile', edit_user_path(current_user)
+            %li= link_to 'Logout', logout_path
+      - else
+        %li= link_to 'Login', root_path

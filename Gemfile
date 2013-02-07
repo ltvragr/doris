@@ -35,6 +35,8 @@ gem 'chosen-rails'
 group :development, :test do
   gem 'ffaker'
   gem 'haml-rails'
+  gem 'guard-livereload'
+  gem 'rb-fsevent', '~> 0.9.1' # dependency for guard, which isn't automatically resolved for some reason
 end
 
 
@@ -42,10 +44,11 @@ end
 # in production environments by default.
 group :assets do
   gem 'sass-rails', '~> 3.2'
-  gem 'bootstrap-sass', '~> 2.2.1.1'
+  gem 'bootstrap-sass', '~> 2.2'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'therubyracer', :platforms => :ruby
   gem 'uglifier', '>= 1.0.3'
+  gem 'font-awesome-rails'
 end
 
 # To use ActiveModel has_secure_password

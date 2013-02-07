@@ -1,3 +1,6 @@
+@import "colors";
+@import "mixins";
+
 @import "bootstrap_overrides";
 @import "bootstrap";
 
@@ -5,11 +8,11 @@
   margin-top: $navbarHeight + 10px;
 }
 
-body {
-  font-family: 'Titillium Web',sans-serif;
-}
-
 @import "bootstrap-responsive";
+
+@import "font-awesome";
+
+@import "layouts/*";
 
 @import "info_fields";
 @import "labs";
