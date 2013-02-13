@@ -1,4 +1,5 @@
 .block.well
+  %a.hidden{:href => entry.url}
   %h3=entry.title
   -entry.categories.each do |category|
     %span.label.label-info=category

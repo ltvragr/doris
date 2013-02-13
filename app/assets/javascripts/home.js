@@ -3,13 +3,17 @@ $(document).ready(function(){
   $('.slider_parent').css('width', count*385);
 });
 
-
 $('.block').hover(function() {
   $(this).addClass('highlight');
   $(this).find(".hover_only").removeClass('hidden');
 }, function() {
   $(this).removeClass('highlight');
   $(this).find(".hover_only").addClass('hidden');
+});
+
+$('.block').click(function() {
+  var url = $(this).find("a").attr("href");
+  window.open(url);
 });
 
 $('.to_button').hover(function() {
