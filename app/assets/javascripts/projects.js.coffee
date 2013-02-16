@@ -7,11 +7,11 @@ jQuery ->
 		prePopulate: $('#project_lab_tokens').data('load')
 		preventDuplicates: true
 		noResultsText: "Your lab is not listed. Make a new lab <a href='../labs/new'> here </a>"
-jQuery ->        
+jQuery ->
     $('#project_user_tokens').tokenInput '/users.json?source=project'
         theme: 'facebook'
         prePopulate: $('#project_user_tokens').data('load')
         propertyToSearch: "login"
         preventDuplicates: true
         resultsFormatter: (user) -> "<li>" + user.first_name + " " + user.last_name + " (" + user.login + ")</li>"
-        tokenFormatter: (user) -> "<li>" + user.first_name + " " + user.last_name + " (" + user.login + ")</li>"            
+        tokenFormatter: (user) -> "<li>" + user.first_name + " " + user.last_name + " (" + user.login + ")</li>"

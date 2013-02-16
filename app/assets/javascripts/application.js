@@ -18,6 +18,7 @@
 //= require jquery.tokeninput
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
+//= require jquery.isotope.min
 //= require info_fields
 //= require labs
 //= require projects
@@ -37,3 +38,13 @@ $("#logo-search-field").popover({
 $(".favorite").tooltip({
   placement: 'left'
 });
+
+$(document).ready(function() {
+  // Stuff to do as soon as the DOM is ready;
+  $('.isotope-container').isotope({
+    itemSelector : '.isotope-box',
+    layoutMode : 'fitRows'
+  });
+
+});
+
