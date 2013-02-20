@@ -26,7 +26,7 @@ class Ability
                 user_object == user
             end
             if user.labs.empty?          # limit one lab per PI
-                can [:create], Lab 
+                can :create, Lab 
             end
             can [:update, :edit, :destroy, :approve], Lab do |lab|
                 lab.try(:principles).include? user

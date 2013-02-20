@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
     if current_user.nil?
       redirect_to new_user_path
     else
-      redirect_to root_url
+      redirect_to home_url
     end
   end
 end

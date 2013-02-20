@@ -41,6 +41,7 @@ class LabsController < ApplicationController
   # POST /labs
   # POST /labs.json
   def create
+    # @lab = Lab.new(params[:lab])
 
     # Fill in missing fields for a requested lab
     if current_user.status == "undergrad"
@@ -56,7 +57,7 @@ class LabsController < ApplicationController
     respond_to do |format|
       if @lab.save
         if current_user.status == "undergrad"
-          format.html { redirect_to labs_url, notice: 'Lab was successfully created.' }
+          format.html { redirect_to labs_url, notice: 'Lab was successfully created. Your PI will be notified shortly.' }
         else
           format.html { redirect_to @lab, notice: 'Lab was successfully created.' }
         end
