@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
       i = 0
       while i < result.length
         results[i] = {
+                        :id          => "<<<#{query}>>>",
                         :first_name  => result[i][:givenname][0],
                         :last_name   => result[i][:sn][0],
                         :login       => result[i][:uid][0],
@@ -35,4 +36,10 @@ class User < ActiveRecord::Base
       return results
     end
   end 
+
+  def self.ids_from_tokens(tokens)
+    puts(tokens)
+    tokens.gsub!(/<<<(.+?)>>>/) { create!({first_name: $1, last_name: $2, login: $3, email: $4, status: "pi"}).id }
+    tokens.split(',')
+  end
 end

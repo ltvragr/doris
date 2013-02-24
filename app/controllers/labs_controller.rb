@@ -46,7 +46,8 @@ class LabsController < ApplicationController
     # Fill in missing fields for a requested lab
     if current_user.status == "undergrad"
       @lab.is_authorized = false
-      @lab.name = @lab.principles.first.last_name + " Lab"
+      @lab.name = params[:lab][:user_tokens] + " Lab"
+      raise ("THIS IS A TEST2 " + params[:lab][:user_tokens]).to_yaml
       @lab.url = ""
       @lab.description = "This lab is unauthorized."
       #send an email to PI
