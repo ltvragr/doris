@@ -34,10 +34,5 @@ class Ability
             can :logout, User
         end
     end
-    if Rails.env == "development"
-        can :manage, User do |user_object|
-            user_object == user
-        end
-    end
   end
 end
