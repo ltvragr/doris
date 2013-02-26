@@ -52,7 +52,7 @@ class LabsController < ApplicationController
       #pi.save
       @lab.url = ""
       @lab.description = "This lab is unauthorized."
-      #send an email to PI
+      UserMailer.lab_req_email(@lab.principles.first).deliver
     else
       @lab.is_authorized = true
     end

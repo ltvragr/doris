@@ -37,6 +37,7 @@ group :development, :test do
   gem 'haml-rails'
   gem 'guard-livereload'
   gem 'rb-fsevent', '~> 0.9.1' # dependency for guard, which isn't automatically resolved for some reason
+  gem 'letter_opener'
 end
 
 
