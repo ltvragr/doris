@@ -53,7 +53,7 @@ class LabsController < ApplicationController
       @lab.name = @lab.principles.first.last_name + " Lab"
       #pi.save
       @lab.url = ""
-      @lab.description = "This lab is unauthorized."
+      @lab.description = "This lab has not been unauthorized. The PI must sign into Doris to authorize. Projects may still be created."
       UserMailer.lab_req_email(@lab.principles.first).deliver
     else
       @lab.is_authorized = true

@@ -1,35 +1,40 @@
 - title @lab.name
-%a.btn.btn-warning Favorite This Lab (Doesn't work yet)
-%hr
-- if @lab.is_authorized?
+- if not @lab.is_authorized?
+  - subtitle "(Not Authorized)"
+ 
+//button to allow PI to authorize
+- if not @lab.is_authorized? and can? :approve, @lab
+  %h3
+    PI, please click here to approve this lab.
+  = button_to 'Approve Lab', authorize_path, class: :'btn btn-danger'
+  %hr
+
+- else
+  %a.btn.btn-warning Favorite This Lab (Doesn't work yet)
+  %hr
   %p
     %strong Principal Investigator:
     = render @lab.principles.where("status like ?", "pi")
   %p
-    %strong URL:
-    %br
-    = link_to @lab.url, @lab.url
+    - if @lab.url != ""     #render URL only if nonempty
+      %strong URL:
+      %br
+      = link_to @lab.url, @lab.url
   %p
     %strong Description:
     %br
     = @lab.description
   %p
     %strong Projects:
+    %br
     = render @lab.projects
     = link_to 'New Project', new_project_path(:lab_id => @lab.id), class: :'btn' 
 
 
-  .form-actions
-    - if can? :edit, @lab
-      = link_to 'Edit', edit_lab_path(@lab), :class => 'btn'
-    - if can? :destroy, @lab   
-      = link_to 'Destroy', lab_path(@lab), :method => "delete", :data => { :confirm => 'Are you sure?'}, :class => 'btn btn-danger'
 
-- else
-  - if can? :approve, @lab
-    %p
-      Dear PI, you must approve this lab
-    = button_to 'Approve Lab', authorize_path, class: :'btn'
-  - else
-    %p
-      Sorry, the PI must first approve this lab
+.form-actions
+  - if can? :edit, @lab
+    = link_to 'Edit', edit_lab_path(@lab), :class => 'btn'
+  - if can? :destroy, @lab   
+    = link_to 'Destroy', lab_path(@lab), :method => "delete", :data => { :confirm => 'Are you sure?'}, :class => 'btn btn-danger'
+

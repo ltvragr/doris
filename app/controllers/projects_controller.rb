@@ -92,4 +92,14 @@ class ProjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def confirm
+    @project = Project.find(params[:id])
+    @project.is_confirmed = true
+    @project.save
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.json { render json: @project.errors, status: :unprocessable_entity }
+    end
+  end
 end

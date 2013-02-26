@@ -12,6 +12,7 @@ Doris::Application.routes.draw do
   match '/users/:id' => 'users#update_info_fields', :as => :update_info_fields
   match '/logout' => 'users#logout', :as => :logout
   match '/authorize/:id' => 'labs#authorize', :as => :authorize
+  match '/confirm/:id' => 'projects#confirm', :as => :confirm
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -26,6 +26,9 @@ class Ability
                 user_object == user
             end
             can :create, Project
+            can :confirm, Project do |project|
+                project.labs.first.try(:principles).include? user
+            end
             if user.labs.empty?          # limit one lab per PI
                 can :create, Lab 
             end
