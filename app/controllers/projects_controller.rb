@@ -46,6 +46,14 @@ class ProjectsController < ApplicationController
   def create
     # @project = Project.new(params[:project])
 
+    # request project authorization from PI
+    if current_user.status == "undergrad"
+      @project.is_confirmed = false
+     # UserMailer.project_confirm_email(@project.labs.first.principles.first).deliver
+    else
+      @project.is_confirmed = true
+    end
+
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
