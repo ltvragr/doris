@@ -3,6 +3,6 @@ class UserMailer < ActionMailer::Base
 
   def lab_req_email(user)
   	@user = user
-  	mail(:to => user.email, subject => "Please Confirm a Lab on Doris")
+  	mail(:to => user.email, :subject => "Please Confirm a Lab on Doris")
   end
 end
