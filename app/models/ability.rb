@@ -15,7 +15,7 @@ class Ability
                 user_object == user
             end
             can :create, Project
-            can [:update, :edit, :destroy], Project do |project|
+            can [:update, :edit], Project do |project|
                 project.try(:users).include? user
             end
             can :logout, User
@@ -26,7 +26,7 @@ class Ability
                 user_object == user
             end
             can :create, Project
-            can :confirm, Project do |project|
+            can [:create, :confirm, :update, :edit], Project do |project|
                 project.labs.first.try(:principles).include? user
             end
             if user.labs.empty?          # limit one lab per PI
