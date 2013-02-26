@@ -7,8 +7,6 @@ class UserMailer < ActionMailer::Base
   end
 
   def project_confirm_email(user)
-  	puts "alert"
-
   	@user = user
   	mail(:to => @user.email, :subject => "Yale: Please confirm a project on Doris")
   end

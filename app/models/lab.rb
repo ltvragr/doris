@@ -9,8 +9,8 @@ class Lab < ActiveRecord::Base
 
   attr_reader :user_tokens
 
-  def user_tokens=(ids)
-    self.principle_ids = ids.split(",")
+  def user_tokens=(tokens)
+    self.principle_ids = User.ids_from_tokens(tokens)
   end
 
 end
