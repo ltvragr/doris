@@ -46,8 +46,10 @@ class LabsController < ApplicationController
     # Fill in missing fields for a requested lab
     if current_user.status == "undergrad"
       @lab.is_authorized = false
-      @lab.name = params[:lab][:user_tokens] + " Lab"
-      raise ("THIS IS A TEST2 " + params[:lab][:user_tokens]).to_yaml
+      #pi_params = User.ldap_search(params[:lab][:user_tokens])[0]
+      #pi = User.new(login: pi_params[:login], first_name: pi_params[:first_name], last_name: pi_params[:last_name], email: pi_params[:email])
+      @lab.name = @lab.principles.first.last_name + " Lab"
+      #pi.save
       @lab.url = ""
       @lab.description = "This lab is unauthorized."
       #send an email to PI
