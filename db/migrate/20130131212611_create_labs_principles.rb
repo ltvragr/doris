@@ -5,6 +5,7 @@ class CreateLabsPrinciples < ActiveRecord::Migration
       t.integer "user_id"
     end
     add_index :labs_principles, ["lab_id", "user_id"]
+    #Lab.update_all["principles = ?", []]
   end
 
   def down
