@@ -49,7 +49,7 @@ class ProjectsController < ApplicationController
     # request project authorization from PI
     if current_user.status == "undergrad"
       @project.is_confirmed = false
-     # UserMailer.project_confirm_email(@project.labs.first.principles.first).deliver
+      UserMailer.project_confirm_email(@project.labs.first.principles.first).deliver
     else
       @project.is_confirmed = true
     end
