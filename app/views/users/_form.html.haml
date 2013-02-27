@@ -18,6 +18,8 @@
     = f.label :email, :class => 'control-label'
     .controls
       = f.text_field :email, :class => 'text_field'
+
+  / allow changes to status only for admins
   - if can? :manage, @user
     .control-group
       = f.label :status, :class => 'control-label'

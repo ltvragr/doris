@@ -18,6 +18,9 @@ class Ability
             can [:update, :edit], Project do |project|
                 project.try(:users).include? user
             end
+            can :add_self_to_project, Project do |project|
+                not project.try(:users).include? user
+            end
             can :logout, User
             can [:request, :create], Lab
         end

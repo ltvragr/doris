@@ -102,4 +102,14 @@ class ProjectsController < ApplicationController
       format.json { render json: @project.errors, status: :unprocessable_entity }
     end
   end
+
+  def add_self_to_project
+    @project = Project.find(params[:id])
+    @project.users << current_user
+    @project.save
+    respond_to do |format|
+      format.html {redirect_to :back}
+      format.json { render json: @project.errors, status: :unprocessable_entity }
+    end
+  end
 end

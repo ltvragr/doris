@@ -1,6 +1,6 @@
 - if cannot? :approve, Lab
-	%h1 Request New Lab
+	- title "Request New Lab"
 - else
-	%h1 New Lab
+	- title "New Lab"
 
 = render :partial => "form"

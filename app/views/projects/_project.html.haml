@@ -8,3 +8,6 @@
 	%p= "Description: #{project.description}"
 	%h6 Users
 	%ul= render project.users
+
+	-if can? :add_self_to_project, project
+		= button_to "I'm working on this project!", add_self_to_project_path(project), class: :'btn btn-warning'
