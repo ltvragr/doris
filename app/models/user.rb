@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
       i = 0
       while i < result.length
         results[i] = {
+                        :id          => result[i][:uid][0],
                         :first_name  => result[i][:givenname][0],
                         :last_name   => result[i][:sn][0],
                         :login       => result[i][:uid][0],
@@ -35,4 +36,11 @@ class User < ActiveRecord::Base
       return results
     end
   end 
+
+  def self.ids_from_tokens(tokens)
+    pi_params = ldap_search(tokens.chomp('*'))[0]
+    pi = create! login: tokens, first_name: pi_params[:first_name], last_name: pi_params[:last_name], email: pi_params[:email], status: "pi"
+    tokens = pi.id.to_s
+    tokens.split(',')
+  end
 end

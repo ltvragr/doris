@@ -46,9 +46,25 @@ class ProjectsController < ApplicationController
   def create
     # @project = Project.new(params[:project])
 
+    # request project authorization from any PIs associated with a project
+    if current_user.status == "undergrad"
+      @project.is_confirmed = false
+      @project.labs.each {
+        |lab| lab.principles.each {
+          |pi| UserMailer.project_confirm_email(pi).deliver
+        }
+      }
+    else
+      @project.is_confirmed = true
+    end
+
     respond_to do |format|
       if @project.save
-        format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        if(current_user.status == "undergrad")
+          format.html { redirect_to @project, notice: 'An email was sent requesting approval for this project from your PI.' }
+        else
+          format.html { redirect_to @project, notice: 'Project was successfully created.' }
+        end
         format.json { render json: @project, status: :created, location: @project }
       else
         format.html { render action: "new" }
@@ -80,8 +96,28 @@ class ProjectsController < ApplicationController
     @project.destroy
 
     respond_to do |format|
-      format.html { redirect_to projects_url }
+      format.html { redirect_to projects_url, notice: "Project was successfully destroyed" }
       format.json { head :no_content }
+    end
+  end
+
+  def confirm
+    @project = Project.find(params[:id])
+    @project.is_confirmed = true
+    @project.save
+    respond_to do |format|
+      format.html {redirect_to :back, notice: "This project has been confirmed."}
+      format.json { render json: @project.errors, status: :unprocessable_entity }
+    end
+  end
+
+  def add_self_to_project
+    @project = Project.find(params[:id])
+    @project.users << current_user
+    @project.save
+    respond_to do |format|
+      format.html {redirect_to :back, notice: "You've been added to this project."}
+      format.json { render json: @project.errors, status: :unprocessable_entity }
     end
   end
 end

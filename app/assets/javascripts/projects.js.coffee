@@ -14,5 +14,4 @@ jQuery ->
         propertyToSearch: "login"
         preventDuplicates: true
         resultsFormatter: (user) -> "<li>" + user.first_name + " " + user.last_name + " (" + user.login + ")</li>"
-        tokenFormatter: (user) -> "<li>" + user.first_name + " " + user.last_name + " (" + user.login + ")</li>"
-            
+        tokenFormatter: (user) -> "<li>" + user.first_name + " " + user.last_name + " (" + user.login + ")</li>"            

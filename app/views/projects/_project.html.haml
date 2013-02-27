@@ -1,5 +1,13 @@
 .well
-  %h4= link_to project.name, project
-  %p= "Description: #{project.description}"
-  %h6 Users
-  %ul= render project.users
+	%h4= link_to project.name, project
+	- if not project.is_confirmed?
+		%h5 (Not confirmed)
+		-if can? :confirm, project
+			= button_to 'Confirm Project', confirm_path(project), class: :'btn btn-danger'
+	%hr
+	%p= "Description: #{project.description}"
+	%h6 Users
+	%ul= render project.users
+
+	-if can? :add_self_to_project, project
+		= button_to "I'm working on this project!", add_self_to_project_path(project), class: :'btn btn-warning'

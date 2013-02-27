@@ -46,9 +46,12 @@ class LabsController < ApplicationController
     # Fill in missing fields for a requested lab
     if current_user.status == "undergrad"
       @lab.is_authorized = false
+      #pi_params = User.ldap_search(params[:lab][:user_tokens])[0]
+      #pi = User.new(login: pi_params[:login], first_name: pi_params[:first_name], last_name: pi_params[:last_name], email: pi_params[:email])
       @lab.name = @lab.principles.first.last_name + " Lab"
+      #pi.save
       @lab.url = ""
-      @lab.description = "This lab is unauthorized."
+      @lab.description = "This lab has not been unauthorized. The PI must sign into Doris to authorize. Projects may still be created."
       UserMailer.lab_req_email(@lab.principles.first).deliver
     else
       @lab.is_authorized = true
@@ -92,7 +95,7 @@ class LabsController < ApplicationController
     @lab.destroy
 
     respond_to do |format|
-      format.html { redirect_to labs_url }
+      format.html { redirect_to labs_url, notice: "Lab was successfully destroyed."}
       format.json { head :no_content }
     end
   end
@@ -102,7 +105,7 @@ class LabsController < ApplicationController
     @lab.is_authorized = true
     @lab.save
     respond_to do |format|
-      format.html {redirect_to @lab}
+      format.html {redirect_to @lab, notice: "Lab was successfully authorized."}
       format.json { render json: @lab.errors, status: :unprocessable_entity }
     end
   end

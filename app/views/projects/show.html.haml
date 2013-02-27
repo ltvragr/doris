@@ -1,33 +1,39 @@
-- model_class = Project
 - title @project.name
+- if not @project.is_confirmed?
+  - subtitle "(Not Confirmed)"
+
+- if not @project.is_confirmed? and can? :confirm, @project
+  %h3
+    PI, please click here to confirm this project.
+  = button_to 'Confirm Project', confirm_path, class: :'btn btn-danger'
+  %hr
+
 %a.btn.btn-warning Favorite This Project (Doesn't work yet)
 %hr
 %p
-  %strong= model_class.human_attribute_name(:name) + ':'
+  %strong Name:
   %br
   = @project.name
 %p
-  %strong= model_class.human_attribute_name(:users) + ':'
+  %strong Contributors:
   %br
-  %ul
-    - @project.users.each do |user|
-      %li= link_to user.name, user
+  %ul= render @project.users
 %p
-  %strong= model_class.human_attribute_name(:lab) + ':'
+  %strong Lab:
   %br
   %ul
     - @project.labs.each do |lab|
       %li= link_to lab.name, lab
 %p
-  %strong= model_class.human_attribute_name(:description) + ':'
+  %strong Description:
   %br
   = @project.description
 %p
-  %strong= model_class.human_attribute_name(:start_date) + ':'
+  %strong Start Date:
   %br
   = @project.start_date
 %p
-  %strong= model_class.human_attribute_name(:end_date) + ':'
+  %strong End Date:
   %br
   = @project.end_date
 
