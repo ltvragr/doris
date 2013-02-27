@@ -43,8 +43,6 @@ class LabsController < ApplicationController
   def create
     # @lab = Lab.new(params[:lab])
 
-    puts @lab.principles.first
-
     # Fill in missing fields for a requested lab
     if current_user.status == "undergrad"
       @lab.is_authorized = false
@@ -97,7 +95,7 @@ class LabsController < ApplicationController
     @lab.destroy
 
     respond_to do |format|
-      format.html { redirect_to labs_url }
+      format.html { redirect_to labs_url, notice: "Lab was successfully destroyed."}
       format.json { head :no_content }
     end
   end
@@ -107,7 +105,7 @@ class LabsController < ApplicationController
     @lab.is_authorized = true
     @lab.save
     respond_to do |format|
-      format.html {redirect_to @lab}
+      format.html {redirect_to @lab, notice: "Lab was successfully authorized."}
       format.json { render json: @lab.errors, status: :unprocessable_entity }
     end
   end

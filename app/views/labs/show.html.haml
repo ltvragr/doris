@@ -14,7 +14,7 @@
   %hr
   %p
     %strong Principal Investigator:
-    = render @lab.principles.where("status like ?", "pi")
+    = render @lab.principles
   %p
     - if @lab.url != ""     #render URL only if nonempty
       %strong URL:
