@@ -49,11 +49,11 @@ class ProjectsController < ApplicationController
     # request project authorization from any PIs associated with a project
     if current_user.status == "undergrad"
       @project.is_confirmed = false
-      @project.labs.each {
-        |lab| lab.principles.each {
-          |pi| UserMailer.project_confirm_email(pi).deliver
-        }
-      }
+      @project.labs.each do |lab|
+        lab.principles.each do |pi|
+          UserMailer.project_confirm_email(pi).deliver
+        end
+      end
     else
       @project.is_confirmed = true
     end
