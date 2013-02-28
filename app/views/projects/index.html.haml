@@ -33,6 +33,7 @@
 .isotope-container
   - @projects.each do |project|
     .isotope-box
+      = link_to project.name, project, class: 'project-name'
       %p= project.description
 
 .form-actions
