@@ -46,12 +46,12 @@ end
 
 
 ####################
-#Seed other users
+#Seed undergrads
 ####################
-entered_num = ask_for_records("User")
+entered_num = ask_for_records("undergrads")
 
 if entered_num.integer? && entered_num > 0
-  users = entered_num.times.map do
+  undergrads = entered_num.times.map do
     User.create do |u|
       u.first_name =Faker::Name.first_name
       u.last_name =Faker::Name.last_name
@@ -61,11 +61,35 @@ if entered_num.integer? && entered_num > 0
     end
   end
   STDOUT.puts "\n#{entered_num} records successfully created!"
-  users << User.first
+  undergrads << User.first
 else
   STDOUT.puts "\nPlease enter a whole number greater than 0."
   entered_num = STDIN.gets.chomp.to_i
 end
+
+####################
+#Seed PIs
+####################
+entered_num = ask_for_records("PIs")
+
+if entered_num.integer? && entered_num > 0
+  pis = entered_num.times.map do
+    User.create do |u|
+      u.first_name =Faker::Name.first_name
+      u.last_name =Faker::Name.last_name
+      u.email =Faker::Internet.email
+      u.login = (0...3).map{65.+(rand(25)).chr}.join.downcase + r.rand(2..99).to_s
+      u.status = "pi"
+    end
+  end
+  STDOUT.puts "\n#{entered_num} records successfully created!"
+else
+  STDOUT.puts "\nPlease enter a whole number greater than 0."
+  entered_num = STDIN.gets.chomp.to_i
+end
+
+
+
 
 ####################
 #Seed Labs
@@ -75,7 +99,8 @@ entered_num = ask_for_records("Labs")
 if entered_num.integer? && entered_num > 0
   labs = entered_num.times.map do
     Lab.create do |l|
-      l.name = Faker::Name.last_name + "'s Lab"
+      l.principles << pis.sample(1)
+      l.name = l.principles.first.last_name + "'s Lab"
       l.description = Faker::HipsterIpsum.paragraph(4)
       l.url = Faker::Internet.email
     end
