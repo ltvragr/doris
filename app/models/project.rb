@@ -7,6 +7,10 @@ class Project < ActiveRecord::Base
 
   attr_reader :lab_tokens, :user_tokens
 
+  searchable do 
+    text :name, :description
+  end
+
   def lab_tokens=(ids)
     self.lab_ids = ids.split(",")
   end

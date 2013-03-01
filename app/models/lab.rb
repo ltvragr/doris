@@ -9,6 +9,10 @@ class Lab < ActiveRecord::Base
 
   attr_reader :user_tokens
 
+  searchable do 
+    text :name, :description
+  end
+
   def user_tokens=(tokens)
     self.principle_ids = User.ids_from_tokens(tokens)
   end

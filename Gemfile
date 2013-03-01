@@ -13,6 +13,8 @@ gem 'mysql2'
 
 gem 'net-ldap'
 
+gem 'sunspot_rails'
+gem 'sunspot_solr'
 
 gem "pry"
 gem "pry-rails"

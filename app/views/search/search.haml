@@ -1,0 +1,19 @@
+%h3= "Search results for #{@search_string}"
+%br
+%h4= "Users: " + pluralize(@users.size, 'result') + " found"
+-@users.each do |user|
+  %ul
+    %li
+      =link_to user.first_name + " " + user.last_name, user
+%br
+%h4= "Labs: " + pluralize(@labs.size, 'result') + " found"
+-@labs.each do |lab|
+  %ul
+    %li
+      =link_to lab.name, lab
+%br
+%h4= "Projects: " + pluralize(@projects.size, 'result') + " found"
+-@projects.each do |project|
+  %ul
+    %li
+      =link_to project.name, project
