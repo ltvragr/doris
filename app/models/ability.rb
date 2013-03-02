@@ -29,7 +29,7 @@ class Ability
                 user_object == user
             end
             can :create, Project
-            can [:create, :confirm, :update, :edit], Project do |project|
+            can [:create, :confirm, :update, :edit, :modify_users_on_project], Project do |project|
                 project.labs.each {|lab| lab.try(:principles).include? user}
             end
             if user.labs.empty?          # limit one lab per PI

@@ -7,14 +7,18 @@
     = f.label :lab_tokens, "Labs", :class => 'control-label'
     .controls
       = f.text_field :lab_tokens, data: {load: JSON.parse(@project.labs.to_json)}
-  .control-group
-    = f.label :user_tokens, "Students", :class => 'control-label'
-    / Only prepopulate user field if it's an undergrad
-    .controls
-      - if current_user.status == "undergrad"
+  / only admins/ PIs can directly modify users on a project
+  / undergrads should be able to suggest that other undergrads join the project
+  - if can? :modify_users_on_project, @project
+    .control-group
+      = f.label :user_tokens, "Students", :class => 'control-label'
+      .controls
         = f.text_field :user_tokens, data: {load: JSON.parse(@project.users.to_json)}
-      - else
-        = f.text_field :user_tokens
+  /- else
+  /  .control-group
+  /    = f.label :user_tokens, "Other people you know on this project?", /:class => 'control-label'
+  /    .controls
+  /      = f.text_field :user_tokens
       
   .control-group
     = f.label :description, :class => 'control-label'
