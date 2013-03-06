@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource
-  # GET /users
-  # GET /users.json
+  load_and_authorize_resource :except => [:new, :create]
   skip_before_filter :first_time_user, :only => [:new, :create]
   
+  # GET /users
+  # GET /users.json
   def index
     # @users = User.all
 
@@ -36,11 +36,9 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
-    #@user = User.new
+    @user = User.new
     @user.login = session[:cas_user] #default to current login
-    
-    @user.status == "admin"
-    
+        
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
@@ -80,13 +78,14 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    # @user = User.new(params[:user])
+    @user = User.new(params[:user])
     
     if cannot? :modify_login, User
       params[:user][:login] = session[:cas_user]
+      params[:user][:status] = "undergrad"
     end
 
-    @user.status == params[:user][:status]
+    @user.status = params[:user][:status]
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, notice: 'User was successfully created.' }
