@@ -36,6 +36,11 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
+    if current_user && current_user.status != 'admin'
+      flash[:error] = "Access Denied."
+      redirect_to :home and return
+    end
+
     @user = User.new
     @user.login = session[:cas_user] #default to current login
         

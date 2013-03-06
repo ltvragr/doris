@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :projects
   has_and_belongs_to_many :labs, join_table: 'labs_principles'
 
+  validates :login, uniqueness: true
+
   searchable do
     text :first_name, :last_name, :email
   end

@@ -1,31 +1,14 @@
-= form_for @user, :html => { :class => 'form-horizontal' } do |f|
-  .control-group
-    = f.label :login, :class => 'control-label'
-    .controls
-      - if (@user.new_record? && current_user && current_user.status == "admin")
-        = f.text_field :login, :class => 'text_field'
-      - else
-        = f.text_field :login, :class => 'text_field', :readonly => true, :input_html => {:value => @user.login}
-  .control-group
-    = f.label :first_name, :class => 'control-label'
-    .controls
-      = f.text_field :first_name, :class => 'text_field'
-  .control-group
-    = f.label :last_name, :class => 'control-label'
-    .controls
-      = f.text_field :last_name, :class => 'text_field'
-  .control-group
-    = f.label :email, :class => 'control-label'
-    .controls
-      = f.text_field :email, :class => 'text_field'
+= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f|
+  - if (@user.new_record? && current_user && current_user.status == "admin")
+    = f.input :login, :class => 'text_field'
+  - else
+    = f.input :login, :class => 'text_field', :readonly => true, :input_html => {:value => @user.login}
+  = f.input :first_name
+  = f.input :last_name
+  = f.input :email
 
   / allow changes to status only for admins
   - if can? :manage, @user
-    .control-group
-      = f.label :status, :class => 'control-label'
-      .controls
-        = f.select :status, options_for_user_status, :selected => @user.status
-  .hr
-  .form-actions
-    = f.submit nil, :class => 'btn btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), users_path, :class => 'btn'
+    = f.input :status, collection: options_for_user_status
+  = f.submit nil, :class => 'btn btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), users_path, :class => 'btn'
