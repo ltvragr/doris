@@ -54,7 +54,10 @@ class ProjectsController < ApplicationController
           UserMailer.project_confirm_email(pi).deliver
         end
       end
+      # add user to project when it's created
+      @project.users << current_user
     else
+      # do for PI, admin
       @project.is_confirmed = true
     end
 
