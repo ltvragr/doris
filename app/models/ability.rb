@@ -21,6 +21,9 @@ class Ability
             can :add_self_to_project, Project do |project|
                 not project.users.include? user
             end
+            can :remove_self_from_project, Project do |project|
+                project.users.include? user
+            end
             can :logout, User
             can [:request, :create], Lab
         end
