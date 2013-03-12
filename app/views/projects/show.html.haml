@@ -1,19 +1,15 @@
 - title @project.name
-- if not @project.is_confirmed?
+- unless @project.is_confirmed?
   - subtitle "(Not Confirmed)"
 
 - if not @project.is_confirmed? and can? :confirm, @project
-  %h3
-    PI, please click here to confirm this project.
+  %h3 PI, please click here to confirm this project.
   = button_to 'Confirm Project', confirm_path, class: :'btn btn-danger'
   %hr
 
-%a.btn.btn-warning Favorite This Project (Doesn't work yet)
-%hr
-%p
-  %strong Name:
-  %br
-  = @project.name
+%a.favorite.pull-right{href: '#', name: 'Favorite this project (doesn\'t work yet'}
+  %i.icon-star-empty
+
 %p
   %strong Contributors:
   %br

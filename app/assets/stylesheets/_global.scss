@@ -1,0 +1,9 @@
+.favorite {
+  color: $orange;
+  font-size: $baseFontSize * 1.5;
+
+  &:hover {
+    text-decoration: none;
+    color: darken($orange, 10%);
+  }
+}
