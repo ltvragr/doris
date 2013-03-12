@@ -26,7 +26,7 @@
 //= require home
 
 $('.datatable').dataTable({
-  "sDom": "<'row'<'span6'l><'span4'f>r>t<'row'<'span6'i><'span4'p>>",
+  "sDom": "<'row'<'span7'l><'span5'f>r>t<'row'<'span7'i><'span5'p>>",
   "sPaginationType": "bootstrap"
 });
 
