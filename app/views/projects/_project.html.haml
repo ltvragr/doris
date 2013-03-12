@@ -1,9 +1,10 @@
 .well
-	%h4= link_to project.name, project
-	- if not project.is_confirmed?
-		%h5 (Not confirmed)
-		-if can? :confirm, project
-			= button_to 'Confirm Project', confirm_path(project), class: :'btn btn-danger'
+	%h4
+		= link_to project.name, project
+		- if not project.is_confirmed?
+			%small (Not confirmed)
+			-if can? :confirm, project
+				= button_to 'Confirm Project', confirm_path(project), class: :'btn btn-danger'
 	%hr
 	%p= "Description: #{project.description}"
 	%h6 Users
@@ -11,3 +12,5 @@
 
 	-if can? :add_self_to_project, project
 		= button_to "I'm working on this project!", add_self_to_project_path(project), class: :'btn btn-warning'
+	-elsif can? :remove_self_from_project, project
+		= button_to "I'm not working on this project.", remove_self_from_project_path(project), class: :'btn btn-warning' 

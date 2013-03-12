@@ -45,8 +45,11 @@ class User < ActiveRecord::Base
 
   def self.ids_from_tokens(tokens)
     pi_params = ldap_search(tokens.chomp('*'))[0]
-    pi = create! login: tokens, first_name: pi_params[:first_name], last_name: pi_params[:last_name], email: pi_params[:email], status: "pi"
-    tokens = pi.id.to_s
+    check_pi = where("first_name || last_name || login like ?", "%#{pi_params[:login]}%").where(:status => 'pi').joins(:labs).last
+    if check_pi == nil
+      check_pi = create! login: pi_params[:login], first_name: pi_params[:first_name], last_name: pi_params[:last_name], email: pi_params[:email], status: "pi"
+    end
+    tokens = check_pi.id.to_s
     tokens.split(',')
   end
 end

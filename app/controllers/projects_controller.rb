@@ -54,7 +54,10 @@ class ProjectsController < ApplicationController
           UserMailer.project_confirm_email(pi).deliver
         end
       end
+      # add user to project when it's created
+      @project.users << current_user
     else
+      # do for PI, admin
       @project.is_confirmed = true
     end
 
@@ -120,4 +123,15 @@ class ProjectsController < ApplicationController
       format.json { render json: @project.errors, status: :unprocessable_entity }
     end
   end
+
+  def remove_self_from_project
+    @project = Project.find(params[:id])
+    @project.users.delete(current_user)
+    @project.save
+    respond_to do |format|
+      format.html {redirect_to :back, notice: "You've been removed from this project."}
+      format.json { render json: @project.errors, status: :unprocessable_entity }
+    end
+  end
+
 end

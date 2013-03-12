@@ -16,10 +16,13 @@ class Ability
             end
             can :create, Project
             can [:update, :edit], Project do |project|
-                project.try(:users).include? user
+                project.users.include? user
             end
             can :add_self_to_project, Project do |project|
-                not project.try(:users).include? user
+                not project.users.include? user
+            end
+            can :remove_self_from_project, Project do |project|
+                project.users.include? user
             end
             can :logout, User
             can [:request, :create], Lab
@@ -28,9 +31,8 @@ class Ability
             can [:update, :edit], User do |user_object|
                 user_object == user
             end
-            can :create, Project
             can [:create, :confirm, :update, :edit, :modify_users_on_project], Project do |project|
-                project.labs.each {|lab| lab.try(:principles).include? user}
+                (project.labs.map {|lab| lab.principles.include? user}).include? true
             end
             if user.labs.empty?          # limit one lab per PI
                 can :create, Lab 

@@ -14,6 +14,7 @@ Doris::Application.routes.draw do
   match '/authorize/:id' => 'labs#authorize', :as => :authorize
   match '/confirm/:id' => 'projects#confirm', :as => :confirm
   match '/add_self_to_project/:id' => 'projects#add_self_to_project', :as => :add_self_to_project
+  match '/remove_self_from_project/:id' => 'projects#remove_self_from_project', :as => :remove_self_from_project
   match '/search' => 'search#search', :as => :search
 
   # The priority is based upon order of creation:
