@@ -4,10 +4,10 @@
 
 - if not @project.is_confirmed? and can? :confirm, @project
   %h3 PI, please click here to confirm this project.
-  = button_to 'Confirm Project', confirm_path, class: :'btn btn-danger'
+  = button_to 'Confirm Project', confirm_path, class: :'btn btn-primary'
   %hr
 
-%a.favorite.pull-right{href: '#', name: 'Favorite this project (doesn\'t work yet'}
+%a.favorite.project.pull-right{ href: '#', :"data-toggle" => 'tooltip', title: 'Favorite this project (doesn\'t work yet)' }
   %i.icon-star-empty
 
 %p
@@ -15,7 +15,7 @@
   %br
   %ul= render @project.users
   -if can? :add_self_to_project, @project
-    = button_to "I'm working on this project!", add_self_to_project_path(@project), class: :'btn btn-warning'
+    = button_to "I'm working on this project!", add_self_to_project_path(@project), class: 'btn btn-warning'
 %p
   %strong Lab:
   %br

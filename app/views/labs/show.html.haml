@@ -1,22 +1,22 @@
 - title @lab.name
-- if not @lab.is_authorized?
+- unless @lab.is_authorized?
   - subtitle "(Not Authorized)"
- 
+
 //button to allow PI to authorize
 - if not @lab.is_authorized? and can? :approve, @lab
   %h3
     PI, please click here to approve this lab.
-  = button_to 'Approve Lab', authorize_path, class: :'btn btn-danger'
+  = button_to 'Approve Lab', authorize_path, class: 'btn btn-primary'
   %hr
 
 - else
-  %a.btn.btn-warning Favorite This Lab (Doesn't work yet)
-  %hr
+  %a.favorite.lab.pull-right{ href: '#', :"data-toggle" => 'tooltip', title: 'Favorite this lab (doesn\'t work yet)' }
+    %i.icon-star-empty
   %p
     %strong Principal Investigator:
     = render @lab.principles
   %p
-    - if @lab.url != ""     #render URL only if nonempty
+    - unless @lab.url.empty?     #render URL only if nonempty
       %strong URL:
       %br
       = link_to @lab.url, @lab.url
@@ -28,13 +28,13 @@
     %strong Projects:
     %br
     = render @lab.projects
-    = link_to 'New Project', new_project_path(:lab_id => @lab.id), class: :'btn' 
+    = link_to 'New Project', new_project_path(:lab_id => @lab.id), class: 'btn'
 
 
 
 .form-actions
   - if can? :edit, @lab
     = link_to 'Edit', edit_lab_path(@lab), :class => 'btn'
-  - if can? :destroy, @lab   
+  - if can? :destroy, @lab
     = link_to 'Destroy', lab_path(@lab), :method => "delete", :data => { :confirm => 'Are you sure?'}, :class => 'btn btn-danger'
 

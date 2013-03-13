@@ -33,3 +33,7 @@ $('.datatable').dataTable({
 $("#logo-search-field").popover({
   trigger: 'focus'
 });
+
+$(".favorite").tooltip({
+  placement: 'left'
+});
