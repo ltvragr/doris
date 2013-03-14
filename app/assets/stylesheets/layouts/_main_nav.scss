@@ -18,9 +18,11 @@
 
 .navbar .brand {
   font-size: 38px;
+  // Vertically center the text given $navbarHeight
   padding-top: 0;
   padding-bottom: 0;
   padding-right: 8px;
+  padding-left: 0;
   @include navbarVerticalAlign(38px);
 }
 

@@ -1,12 +1,11 @@
 - content_for :main_nav do
+  = form_tag(search_path, method: 'get', id: 'logo-search', class: 'navbar-form pull-left') do
+    .input-append
+      %input.span3{id: 'logo-search-field', name: 'query', type: 'search', placeholder: 'Doris', rel: 'popover', title: 'Search Doris', :"data-content" => 'Start typing here to search all of Doris (including projects, labs, users, resources, and news).', :"data-placement" => 'bottom'}
+      %button.btn{type: 'submit'}
+        %i.icon-search
   .container.nav-collapse
     %ul.nav
-      = form_tag(search_path, id: 'logo-search', class: 'navbar-form pull-left') do
-        .input-append
-          %input.span3{id: 'logo-search-field', name: 'query', type: 'search', placeholder: 'Doris', rel: 'popover', title: 'Search Doris', :"data-content" => 'Start typing here to search all of Doris (including projects, labs, users, resources, and news).', :"data-placement" => 'bottom'}
-          %button.btn{type: 'submit'}
-            %i.icon-search
-
       = nav_tab "Projects", projects_path, current: current_tab
       = nav_tab "Labs", labs_path, current: current_tab
       = nav_tab "Users", users_path, current: current_tab
