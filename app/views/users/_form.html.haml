@@ -1,8 +1,8 @@
-= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f|
+= simple_form_for @user, html: { class: 'form-horizontal' } do |f|
   - if (@user.new_record? && current_user && current_user.status == "admin")
-    = f.input :login, :class => 'text_field'
+    = f.input :login, class: 'text_field'
   - else
-    = f.input :login, :class => 'text_field', :readonly => true, :input_html => {:value => @user.login}
+    = f.input :login, class: 'text_field', readonly: true, input_html: {value: @user.login}
   = f.input :first_name
   = f.input :last_name
   = f.input :email
@@ -10,5 +10,5 @@
   / allow changes to status only for admins
   - if can? :manage, @user
     = f.input :status, collection: options_for_user_status
-  = f.submit nil, :class => 'btn btn-primary'
-  = link_to t('.cancel', :default => t("helpers.links.cancel")), users_path, :class => 'btn'
+  = f.submit nil, class: 'btn btn-primary'
+  = link_to t('.cancel', default: t("helpers.links.cancel")), users_path, class: 'btn'

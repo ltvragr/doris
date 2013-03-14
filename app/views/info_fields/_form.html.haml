@@ -1,32 +1,32 @@
-= form_for @info_field, :html => { :class => 'form-horizontal' } do |f|
+= form_for @info_field, html: { class: 'form-horizontal' } do |f|
   .control-group
-    = f.label :label, :class => 'control-label'
+    = f.label :label, class: 'control-label'
     .controls
-      = f.text_field :label, :class => 'text_field'
+      = f.text_field :label, class: 'text_field'
   .control-group
-    = f.label :associated_object, :class => 'control-label'
+    = f.label :associated_object, class: 'control-label'
     .controls
-      = f.select :associated_object, options=(InfoField::ASSOCIATED_OBJECT_OPTIONS), {}, :class => "associated_object"
+      = f.select :associated_object, options=(InfoField::ASSOCIATED_OBJECT_OPTIONS), {}, class: "associated_object"
   .control-group
-    = f.label :associated_role, :class => 'control-label'
+    = f.label :associated_role, class: 'control-label'
     .controls
-      = f.select :associated_role, options=(InfoField::ASSOCIATED_ROLE_OPTIONS), {}, :class => "associated_role"
+      = f.select :associated_role, options=(InfoField::ASSOCIATED_ROLE_OPTIONS), {}, class: "associated_role"
   .control-group
-    = f.label :content_type, :class => 'control-label'
+    = f.label :content_type, class: 'control-label'
     .controls
-      = f.select :content_type, options=(InfoField::DISPLAY_TYPE_OPTIONS), {}, :class => "content_type"
+      = f.select :content_type, options=(InfoField::DISPLAY_TYPE_OPTIONS), {}, class: "content_type"
   .control-group
-    = f.label :content, :class => 'control-label'
+    = f.label :content, class: 'control-label'
     .controls
-      = f.text_area :content, :class => 'text_area'
+      = f.text_area :content, class: 'text_area'
   .control-group
-    = f.label :sort_order, :class => 'control-label'
+    = f.label :sort_order, class: 'control-label'
     .controls
-      = f.number_field :sort_order, :class => 'number_field'
+      = f.number_field :sort_order, class: 'number_field'
   .control-group
-    = f.label :category, :class => 'control-label'
+    = f.label :category, class: 'control-label'
     .controls
-      = f.text_field :category, :class => 'text_field'
+      = f.text_field :category, class: 'text_field'
   .form-actions
-    = f.submit nil, :class => 'btn btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), info_fields_path, :class => 'btn'
+    = f.submit nil, class: 'btn btn-primary'
+    = link_to t('.cancel', default: t("helpers.links.cancel")), info_fields_path, class: 'btn'

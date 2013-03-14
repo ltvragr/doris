@@ -34,7 +34,7 @@
 
 .form-actions
   - if can? :edit, @lab
-    = link_to 'Edit', edit_lab_path(@lab), :lass: 'btn'
+    = link_to 'Edit', edit_lab_path(@lab), class: 'btn'
   - if can? :destroy, @lab
     = link_to 'Destroy', lab_path(@lab), method: 'delete', data: { confirm: 'Are you sure?'}, class: 'btn btn-danger'
 
