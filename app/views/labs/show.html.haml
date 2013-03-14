@@ -28,13 +28,13 @@
     %strong Projects:
     %br
     = render @lab.projects
-    = link_to 'New Project', new_project_path(:lab_id => @lab.id), class: 'btn'
+    = link_to 'New Project', new_project_path(lab_id: @lab.id), class: 'btn'
 
 
 
 .form-actions
   - if can? :edit, @lab
-    = link_to 'Edit', edit_lab_path(@lab), :class => 'btn'
+    = link_to 'Edit', edit_lab_path(@lab), :lass: 'btn'
   - if can? :destroy, @lab
-    = link_to 'Destroy', lab_path(@lab), :method => "delete", :data => { :confirm => 'Are you sure?'}, :class => 'btn btn-danger'
+    = link_to 'Destroy', lab_path(@lab), method: 'delete', data: { confirm: 'Are you sure?'}, class: 'btn btn-danger'
 
