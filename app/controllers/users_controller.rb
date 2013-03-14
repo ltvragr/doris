@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource :except => [:new, :create]
-  skip_before_filter :first_time_user, :only => [:new, :create]
+  load_and_authorize_resource except: [:new, :create]
+  skip_before_filter :first_time_user, only: [:new, :create]
   
   # GET /users
   # GET /users.json
@@ -70,10 +70,10 @@ class UsersController < ApplicationController
         @field = InfoField.find(field_id)
         value = InfoValue.where("associated_object_id = ? AND associated_object_type = 'User' AND info_field_id = ?", @user.id, field_id)
         if value.empty?
-          value = @field.info_values.build({ :associated_object_id => @user.id, :associated_object_type => 'User', :content => v})
+          value = @field.info_values.build({ associated_object_id: @user.id, associated_object_type: 'User', content: v})
           value.save
         else
-          value.first().update_attributes({:content => v})
+          value.first().update_attributes({content: v})
         end
       end
     end

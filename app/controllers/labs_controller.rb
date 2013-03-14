@@ -50,7 +50,7 @@ class LabsController < ApplicationController
       @lab.url = ""
       @lab.description = "This lab has not been unauthorized. The PI must sign into Doris to authorize. Projects may still be created."
       UserMailer.lab_req_email(@lab.principles.first).deliver
-      pi = User.joins(:labs).where(:id => @lab.principles.first.id)
+      pi = User.joins(:labs).where(id: @lab.principles.first.id)
     else
       @lab.is_authorized = true
     end
