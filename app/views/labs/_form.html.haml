@@ -1,31 +1,15 @@
-= form_for @lab, :html => { :class => 'form-horizontal' } do |f|
+= simple_form_for @lab, :html => { :class => 'form-horizontal' } do |f|
   - if current_user.status != "undergrad"
-    .control-group
-      = f.label :name, "Lab Name", :class => 'control-label'
-      .controls
-        = f.text_field :name, :class => 'text_field', value: current_user.last_name + " Lab"
-    .control-group
-      = f.label :user_tokens, "Principle Investigator", :class => 'control-label'
-      .controls
-        - if current_user.status == "admin"
-          = f.text_field :user_tokens
-        - else
-          = f.text_field :user_tokens, data: {load: [JSON.parse(current_user.to_json.insert(-2, ",\"readonly\":true"))]}
-    .control-group
-      = f.label :url, :class => 'control-label'
-      .controls
-        = f.text_field :url, :class => 'text_field'
-    .control-group
-      = f.label :description, :class => 'control-label'
-      .controls
-        = f.text_area :description, :class => 'text_area'
+    = f.input :name, label: "Lab Name", input_html: { value: current_user.last_name + " Lab" }
+    - if current_user.status == "admin"
+      = f.input :user_tokens, label: "Principle Investigator"
+    - else
+      = f.input :user_tokens, label: "Principle Investigator", data: {load: [JSON.parse(current_user.to_json.insert(-2, ",\"readonly\":true"))]}
+    = f.input :url
+    = f.input :description
   
   - else
-    .control-group
-      = f.label :user_tokens, "Principle Investigator", :class => 'control-label'
-      .controls
-        = f.text_field :user_tokens
-  
-  .form-actions
-    = f.submit nil, :class => 'btn btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), labs_path, :class => 'btn'
+    = f.input :user_tokens, label: "Principle Investigator"
+
+  = f.submit nil, :class => 'btn btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), labs_path, :class => 'btn'

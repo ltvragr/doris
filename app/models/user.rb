@@ -40,6 +40,8 @@ class User < ActiveRecord::Base
         i = i + 1
       end
       return results
+    else
+      return []
     end
   end 
 
