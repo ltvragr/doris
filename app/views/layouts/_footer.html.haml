@@ -1,0 +1,16 @@
+%footer
+  %hr
+  .well
+    .row
+      .span8
+        %p= "&copy;".html_safe + " 2012 – #{Date.current.year} Yale Student Technology Collaborative Developers"
+        %hr
+        %p
+          = link_to 'Provide feedback', 'https://docs.google.com/a/yale.edu/spreadsheet/viewform?formkey=dE8zTFprNVB4RTAwdURhWEVTTlpDQVE6MQ#gid=0'
+          (suggestions, issues, and bug reports)
+      .span3
+        %ul.nav.nav-list
+          %li= link_to 'About', '#'
+          %li= link_to 'Contributions', '#'
+          %li= link_to 'Contact Us', '#'
+          %li= link_to 'Terms of Service', '#'
