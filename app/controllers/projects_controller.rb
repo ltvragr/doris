@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: :create
+
   # GET /projects
   # GET /projects.json
   def index
@@ -44,7 +45,15 @@ class ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    # @project = Project.new(params[:project])
+    tokens = params[:project][:user_tokens]
+    undergrad_params = User.ldap_undergrad_search(tokens.chomp('*'))[0]
+    check_undergrad = User.where("login like ?", "%#{undergrad_params[:login]}%").where(status: 'undergrad').last
+    if check_undergrad == nil
+      check_undergrad = User.create! login: undergrad_params[:login], first_name: undergrad_params[:first_name], last_name: undergrad_params[:last_name], email: undergrad_params[:email], status: "undergrad"
+    end
+    params[:project][:user_tokens] = check_undergrad.id.to_s
+
+    @project = Project.new(params[:project])
 
     # request project authorization from any PIs associated with a project
     if current_user.status == "undergrad"
@@ -123,4 +132,15 @@ class ProjectsController < ApplicationController
       format.json { render json: @project.errors, status: :unprocessable_entity }
     end
   end
+
+  def remove_self_from_project
+    @project = Project.find(params[:id])
+    @project.users.delete(current_user)
+    @project.save
+    respond_to do |format|
+      format.html {redirect_to :back, notice: "You've been removed from this project."}
+      format.json { render json: @project.errors, status: :unprocessable_entity }
+    end
+  end
+
 end

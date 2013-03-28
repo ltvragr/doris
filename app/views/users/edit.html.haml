@@ -1,6 +1,6 @@
 - model_class = User
 - title "Edit #{model_class.model_name.human}"
 
-= link_to "Edit user info fields", edit_info_fields_path(:id => @user)
+= link_to "Edit user info fields", edit_info_fields_path(@user)
 %hr
-= render :partial => "form"
+= render partial: 'form'

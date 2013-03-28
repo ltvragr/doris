@@ -1,12 +1,12 @@
 - title 'Dashboard'
 
-%p Find me in app/views/home/index.html.haml
 .slider_wrapper
-  %div.to_button.to_left
+  .to_button.to_left
   .slider_parent
-    -@feed.entries.each do |entry|
-      = render :partial => "block", :locals => {:entry => entry}
-    -@feed2.entries.each do |entry|
-      = render :partial => "block", :locals => {:entry => entry}
-  %div.to_button.to_right
-
+    - unless @feed == 0
+      - @feed.entries.each do |entry|
+        = render partial: 'block', locals: { entry: entry }
+    - unless @feed2 == 0
+      - @feed2.entries.each do |entry|
+        = render partial: 'block', locals: { entry: entry }
+  .to_button.to_right

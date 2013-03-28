@@ -4,7 +4,7 @@
     %h4=c
     - get_fields_for_category(c, @fields).each do |f|
       .control-group
-        = label_tag f.id, f.label, {:class => 'control-label'}
+        = label_tag f.id, f.label, {class: 'control-label'}
         .controls
           - content = get_value_for_field(@values, f, @user)
           - if f.content_type == "text_field"
@@ -12,12 +12,12 @@
           - elsif f.content_type == "text_area"
             = text_area_tag "field"+f.id.to_s(), content
           - elsif f.content_type == "select"
-            = render :partial => "info_field_form_select", :locals => {:f => f, :content => content}
+            = render partial: "info_field_form_select", locals: {f: f, content: content}
           - elsif f.content_type == "radio_button"
-            = render :partial => "info_field_form_radio_button", :locals => {:f => f, :content => content}
+            = render partial: "info_field_form_radio_button", locals: {f: f, content: content}
           - elsif f.content_type == "check_box"
-            = render :partial => "info_field_form_check_box", :locals => {:f => f, :content => content}
+            = render partial: "info_field_form_check_box", locals: {f: f, content: content}
     %hr
   .form-actions
-    = submit_tag nil, :class => 'btn btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), users_path, :class => 'btn'
+    = submit_tag nil, class: 'btn btn-primary'
+    = link_to t('.cancel', default: t("helpers.links.cancel")), users_path, class: 'btn'

@@ -14,7 +14,7 @@ class Lab < ActiveRecord::Base
   end
 
   def user_tokens=(tokens)
-    self.principle_ids = User.ids_from_tokens(tokens)
+    self.principle_ids = tokens
   end
 
 end

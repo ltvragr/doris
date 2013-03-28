@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource :except => [:new, :create]
-  skip_before_filter :first_time_user, :only => [:new, :create]
+  load_and_authorize_resource except: [:new, :create]
+  skip_before_filter :first_time_user, only: [:new, :create]
   
   # GET /users
   # GET /users.json
@@ -9,7 +9,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if params[:source] == "project"
-        return_users = @users.where("first_name || last_name || login like ?", "%#{params[:q]}%").where(:status => 'undergrad')
+        return_users = JSON.parse(User.ldap_undergrad_search(params[:q]).to_json)
+        #return_users = @users.where("first_name || last_name || login like ?", "%#{params[:q]}%").where(:status => 'undergrad')
       elsif params[:source] == "lab"
         return_users = JSON.parse(User.ldap_search(params[:q]).to_json)
 
@@ -70,10 +71,10 @@ class UsersController < ApplicationController
         @field = InfoField.find(field_id)
         value = InfoValue.where("associated_object_id = ? AND associated_object_type = 'User' AND info_field_id = ?", @user.id, field_id)
         if value.empty?
-          value = @field.info_values.build({ :associated_object_id => @user.id, :associated_object_type => 'User', :content => v})
+          value = @field.info_values.build({ associated_object_id: @user.id, associated_object_type: 'User', content: v})
           value.save
         else
-          value.first().update_attributes({:content => v})
+          value.first().update_attributes({content: v})
         end
       end
     end

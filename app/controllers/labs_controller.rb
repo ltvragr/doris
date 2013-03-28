@@ -1,5 +1,5 @@
 class LabsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: :create
   # GET /labs
   # GET /labs.json
   def index
@@ -41,16 +41,26 @@ class LabsController < ApplicationController
   # POST /labs
   # POST /labs.json
   def create
-    # @lab = Lab.new(params[:lab])
+    new_lab = false
+    tokens = params[:lab][:user_tokens]
+    pi_params = User.ldap_search(tokens.chomp('*'))[0]
+    check_pi = User.where("login like ?", "%#{pi_params[:login]}%").where(status: 'pi').joins(:labs).last
+    if check_pi == nil
+      new_lab = true
+      check_pi = User.create! login: pi_params[:login], first_name: pi_params[:first_name], last_name: pi_params[:last_name], email: pi_params[:email], status: "pi"
+    end
+    params[:lab][:user_tokens] = check_pi.id.to_s
 
+    @lab = Lab.new(params[:lab])
     # Fill in missing fields for a requested lab
     if current_user.status == "undergrad"
+      #@lab.principle_ids = check_pi.id.to_s
       @lab.is_authorized = false
       @lab.name = @lab.principles.first.last_name + " Lab"
       @lab.url = ""
       @lab.description = "This lab has not been unauthorized. The PI must sign into Doris to authorize. Projects may still be created."
-      UserMailer.lab_req_email(@lab.principles.first).deliver
-      pi = User.joins(:labs).where(:id => @lab.principles.first.id)
+      UserMailer.lab_req_email(@lab.principles.first).deliver if new_lab
+      pi = User.joins(:labs).where(id: @lab.principles.first.id)
     else
       @lab.is_authorized = true
     end
@@ -79,7 +89,6 @@ class LabsController < ApplicationController
   # PUT /labs/1.json
   def update
     # @lab = Lab.find(params[:id])
-
     respond_to do |format|
       if @lab.update_attributes(params[:lab])
         format.html { redirect_to @lab, notice: 'Lab was successfully updated.' }

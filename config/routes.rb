@@ -8,13 +8,14 @@ Doris::Application.routes.draw do
   resources :projects
   resources :home
 
-  match '/users/:id/edit_info_fields' => 'users#edit_info_fields', :as => :edit_info_fields
-  match '/users/:id' => 'users#update_info_fields', :as => :update_info_fields
-  match '/logout' => 'users#logout', :as => :logout
-  match '/authorize/:id' => 'labs#authorize', :as => :authorize
-  match '/confirm/:id' => 'projects#confirm', :as => :confirm
-  match '/add_self_to_project/:id' => 'projects#add_self_to_project', :as => :add_self_to_project
-  match '/search/:query' => 'search#search', :as => :search
+  match '/users/:id/edit_info_fields' => 'users#edit_info_fields', as: :edit_info_fields
+  match '/users/:id' => 'users#update_info_fields', as: :update_info_fields
+  match '/logout' => 'users#logout', as: :logout
+  match '/authorize/:id' => 'labs#authorize', as: :authorize
+  match '/confirm/:id' => 'projects#confirm', as: :confirm
+  match '/add_self_to_project/:id' => 'projects#add_self_to_project', as: :add_self_to_project
+  match '/remove_self_from_project/:id' => 'projects#remove_self_from_project', as: :remove_self_from_project
+  get '/search' => 'search#search', as: :search
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -65,7 +66,7 @@ Doris::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'public#index'
+  root to: 'public#index'
 
   # See how all your routes lay out with "rake routes"
 

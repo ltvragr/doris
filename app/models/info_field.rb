@@ -19,7 +19,7 @@ class InfoField < ActiveRecord::Base
 # this is only copied from Shifts now. need to actually implement on top of this when we do views.
   def prepare_form_helpers
     if display_type == "text_field"
-      return ["data_fields", id, {:id => id}]
+      return ["data_fields", id, {id: id}]
     elsif display_type == "text_area"
       return ["data_fields", id]
     elsif display_type == "select"

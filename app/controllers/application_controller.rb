@@ -2,9 +2,9 @@ class ApplicationController < ActionController::Base
   
   before_filter RubyCAS::Filter
 
-  #DEVELOPMENT
+#### DEVELOPMENT ####
   before_filter :impersonate_user   #impersonate user code
-  #DEVELOPMENT
+#### DEVELOPMENT ####
   
   before_filter :current_user
   before_filter :first_time_user
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   #rescue_from CanCan::AccessDenied do |exception|
 
-  # only for development
+#### DEVELOPMENT ####
   def impersonate_user
     session[:impers] = params[:impers] if params[:impers]
 
@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
       @current_user = User.where(login: session[:impers]).first
     end 
   end
-  # end only for development
+#### DEVELOPMENT ####
 
   def current_user
     @current_user ||= User.where(login: session[:cas_user]).first if session[:cas_user]

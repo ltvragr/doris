@@ -1,37 +1,37 @@
-= form_for @project, :html => { :class => 'form-horizontal' } do |f|
+= form_for @project, html: { class: 'form-horizontal' } do |f|
   .control-group
-    = f.label :name, "Project Name", :class => 'control-label'
+    = f.label :name, "Project Name", class: 'control-label'
     .controls
-      = f.text_field :name, :class => 'text_field'
+      = f.text_field :name, class: 'text_field'
   .control-group
-    = f.label :lab_tokens, "Labs", :class => 'control-label'
+    = f.label :lab_tokens, "Labs", class: 'control-label'
     .controls
       = f.text_field :lab_tokens, data: {load: JSON.parse(@project.labs.to_json)}
   / only admins/ PIs can directly modify users on a project
   / undergrads should be able to suggest that other undergrads join the project
   - if can? :modify_users_on_project, @project
     .control-group
-      = f.label :user_tokens, "Students", :class => 'control-label'
+      = f.label :user_tokens, "Students", class: 'control-label'
       .controls
         = f.text_field :user_tokens, data: {load: JSON.parse(@project.users.to_json)}
-  /- else
-  /  .control-group
-  /    = f.label :user_tokens, "Other people you know on this project?", /:class => 'control-label'
-  /    .controls
-  /      = f.text_field :user_tokens
+  - else
+    .control-group
+      = f.label :user_tokens, "Other students working on this project", class: 'control-label'
+      .controls
+        = f.text_field :user_tokens, data: {load: JSON.parse(@project.users.to_json)}
       
   .control-group
-    = f.label :description, :class => 'control-label'
+    = f.label :description, class: 'control-label'
     .controls
-      = f.text_area :description, :class => 'text_area', rows: "10"
+      = f.text_area :description, class: 'text_area', rows: "10"
   .control-group
-    = f.label :start_date, :class => 'control-label'
+    = f.label :start_date, class: 'control-label'
     .controls
-      = f.date_select :start_date, :class => 'date_select'
+      = f.date_select :start_date, class: 'date_select'
   .control-group
-    = f.label :end_date, :class => 'control-label'
+    = f.label :end_date, class: 'control-label'
     .controls
-      = f.date_select :end_date, :class => 'date_select'
+      = f.date_select :end_date, class: 'date_select'
   .form-actions
-    = f.submit nil, :class => 'btn btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), projects_path, :class => 'btn'
+    = f.submit nil, class: 'btn btn-primary'
+    = link_to t('.cancel', default: t("helpers.links.cancel")), projects_path, class: 'btn'
