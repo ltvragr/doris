@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 #### DEVELOPMENT ####
 
   def current_user
-    @current_user ||= User.where(login: session[:cas_user]).first if session[:cas_user]
+      @current_user ||= User.where(login: session[:cas_user]).first if session[:cas_user]
   end
 
   def first_time_user
@@ -32,6 +32,9 @@ class ApplicationController < ActionController::Base
       flash[:notice] = "Hey there! Since this is your first time logging in, we'll
         need you to supply us with some basic contact information."
       redirect_to new_user_path
+    elsif current_user.is_active == false
+      flash[:notice] = "Hey there! Since this is your first time logging in, we'll need you to verify your contact information"
+      redirect_to edit_user_path(current_user.id)
     end
   end
 

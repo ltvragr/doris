@@ -3,9 +3,9 @@
     = f.input :login, class: 'text_field'
   - else
     = f.input :login, class: 'text_field', readonly: true, input_html: {value: @user.login}
-  = f.input :first_name
-  = f.input :last_name
-  = f.input :email
+  = f.input :first_name, input_html: {value: @user.first_name}
+  = f.input :last_name, input_html: {value: @user.last_name}
+  = f.input :email, input_html: {value: @user.email}
 
   / allow changes to status only for admins
   - if can? :manage, @user
