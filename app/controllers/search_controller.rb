@@ -8,8 +8,6 @@ class SearchController < ApplicationController
       keywords params[:query]
     end.results
 
-    # binding.pry
-
     @labs = Lab.search do
       keywords params[:query]
     end.results

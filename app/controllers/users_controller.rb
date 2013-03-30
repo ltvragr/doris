@@ -45,7 +45,6 @@ class UsersController < ApplicationController
 
     @user = User.new
     @user.login = session[:cas_user].chomp("*") #default to current login
-    binding.pry
     user_params = User.general_ldap_search(@user.login)
     if user_params.size == 0
       @user.first_name = ""
