@@ -30,6 +30,8 @@
           - if can? :destroy, project
             = link_to t('.destroy', default: t("helpers.links.destroy")), project_path(project), method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-mini btn-danger'
 
+= prepare_filter_bar
+
 .isotope-container
   - @projects.each do |project|
     .isotope-box

@@ -39,8 +39,8 @@
       / flash messages, if any
       - flash.each do |name, msg|
         - unless msg.blank?
-          .alert.fade.in{class: "alert-#{name == :notice ? "success" : "error"}"}
-            %btn.close{:"data-dismiss" => 'alert', href: '#'} &times;
+          .alert.fade.in{ class: "alert-#{name == :notice ? "success" : "error"}" }
+            %btn.close{ :"data-dismiss" => 'alert', href: '#' } &times;
             = msg
       - flash.clear
 
@@ -51,7 +51,11 @@
             %small= yield :subtitle
       .row
         .span12
-          = yield
+          .row
+            .span3
+              = render 'layouts/filter_bar'
+            .span9
+              = yield
 
       = render partial: 'layouts/footer'
 

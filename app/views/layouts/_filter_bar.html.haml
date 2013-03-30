@@ -1,0 +1,7 @@
+- prepare_filter_bar
+.well.filter-bar{ :"data-spy" => 'affix', :"data-offset-top" => 100}
+  %h3 Sort
+  = form_tag '#' do
+    = select_tag 'sort-by', options_for_select(@sort_by_options, @sort_by_options[0])
+  %hr
+  %h3 Filter
