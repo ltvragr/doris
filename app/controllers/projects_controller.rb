@@ -49,7 +49,7 @@ class ProjectsController < ApplicationController
     undergrad_params = User.ldap_undergrad_search(tokens.chomp('*'))[0]
     check_undergrad = User.where("login like ?", "%#{undergrad_params[:login]}%").where(status: 'undergrad').last
     if check_undergrad == nil
-      check_undergrad = User.create! login: undergrad_params[:login], first_name: undergrad_params[:first_name], last_name: undergrad_params[:last_name], email: undergrad_params[:email], status: "undergrad"
+      check_undergrad = User.create! login: undergrad_params[:login], first_name: undergrad_params[:first_name], last_name: undergrad_params[:last_name], email: undergrad_params[:email], status: "undergrad", is_active: false
     end
     params[:project][:user_tokens] = check_undergrad.id.to_s
 

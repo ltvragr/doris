@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   load_and_authorize_resource except: [:new, :create]
-  skip_before_filter :first_time_user, only: [:new, :create]
+  skip_before_filter :first_time_user, only: [:new, :create, :edit, :update, :logout]
+  skip_before_filter :current_user, only: [:edit]
   
   # GET /users
   # GET /users.json
@@ -43,8 +44,19 @@ class UsersController < ApplicationController
     end
 
     @user = User.new
-    @user.login = session[:cas_user] #default to current login
-        
+    @user.login = session[:cas_user].chomp("*") #default to current login
+    binding.pry
+    user_params = User.general_ldap_search(@user.login)
+    if user_params.size == 0
+      @user.first_name = ""
+      @user.last_name = ""
+      @user.email = ""
+    else
+      @user.first_name = user_params[0][:first_name]
+      @user.last_name = user_params[0][:last_name]
+      @user.email = user_params[0][:email]
+    end
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
@@ -83,12 +95,18 @@ class UsersController < ApplicationController
 
   # POST /users
   # POST /users.json
-  def create
-    @user = User.new(params[:user])
-    
+  def create    
     if cannot? :modify_login, User
       params[:user][:login] = session[:cas_user]
       params[:user][:status] = "undergrad"
+    end
+
+    @user = User.new(params[:user])
+    
+    if current_user != nil && current_user.login != params[:user][:login]
+      @user.is_active = false
+    else
+      @user.is_active = true
     end
 
     @user.status = params[:user][:status]
@@ -111,6 +129,10 @@ class UsersController < ApplicationController
       params[:user][:login] = current_user.login
     end
     @user.status == params[:user][:status]
+
+    # activate users whenever they are editied (meaning they log in for the first time)
+    @user.is_active = true
+    
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }

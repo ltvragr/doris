@@ -1,11 +1,12 @@
 class User < ActiveRecord::Base
   rolify
-  attr_accessible :email, :first_name, :last_name, :login, :status
+  attr_accessible :email, :first_name, :last_name, :login, :status, :is_active
 
   has_and_belongs_to_many :projects
   has_and_belongs_to_many :labs, join_table: 'labs_principles'
 
   validates :login, uniqueness: true
+  validates :first_name, :last_name, :email, :login, presence: true
 
   searchable do
     text :first_name, :last_name, :email
@@ -53,6 +54,34 @@ class User < ActiveRecord::Base
     filter_sn = Net::LDAP::Filter.eq("sn", query)
     filter_title = Net::LDAP::Filter.eq("o", "Yale College")
     filter = (filter_id | filter_givenname | filter_sn) & filter_title
+    attrs = [ "givenname", "sn", "uid", "mail"]
+    result = ldap.search(base: "ou=People,o=yale.edu", filter: filter, attributes: attrs)
+
+    unless result.empty?
+      results = []
+      i = 0
+      while i < result.length
+        results[i] = {
+                        id: result[i][:uid][0],
+                        first_name: result[i][:givenname][0],
+                        last_name: result[i][:sn][0],
+                        login: result[i][:uid][0],
+                        email: result[i][:mail][0]
+                      }
+        i += 1
+      end
+      return results
+    else
+      return []
+    end
+  end 
+
+  def self.general_ldap_search(query)
+    query = query << "*"
+    ldap = Net::LDAP.new(host: "directory.yale.edu", port: 389)
+    filter_id = Net::LDAP::Filter.eq("uid", query)
+    filter_title = Net::LDAP::Filter.eq("o", "Yale College")
+    filter = filter_id & filter_title
     attrs = [ "givenname", "sn", "uid", "mail"]
     result = ldap.search(base: "ou=People,o=yale.edu", filter: filter, attributes: attrs)
 
