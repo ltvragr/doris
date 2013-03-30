@@ -39,11 +39,13 @@ $(".favorite").tooltip({
   placement: 'left'
 });
 
+$(".isotope-box .btn-clump .btn").tooltip();
+
 $(document).ready(function() {
   // Stuff to do as soon as the DOM is ready;
   $('.isotope-container').isotope({
     itemSelector: '.isotope-box',
-    layoutMode: 'fitRows',
+    layoutMode: 'masonry',
     getSortData: {
       name: function ($elem) {
         return $elem.find('.project-name').text();

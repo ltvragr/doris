@@ -1,6 +1,29 @@
 - title 'Projects'
 - currently_at 'Projects'
 
+- prepare_filter_bar
+
+.isotope-container
+  - @projects.each do |project|
+    .isotope-box{ id: "project-#{project.id}" }
+      %h3= link_to project.name, project, class: 'project-name'
+      %p.date-range
+        = project.start_date.to_formatted_s(:long)
+        &ndash;
+        = project.end_date
+      %p= project.description
+      .lab
+        - project.labs.each do |lab|
+          = link_to lab.name, lab
+      .btn-clump
+        - if can? :edit, project
+          = link_to edit_project_path(project), class: 'btn', title: 'Edit' do
+            %i.icon-pencil
+
+        - if can? :destroy, project
+          = link_to project, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger', title: 'Delete' do
+            %i.icon-remove-sign
+
 %table.table.table-striped.datatable
   %thead
     %tr
@@ -29,14 +52,6 @@
             = link_to t('.edit', default: t("helpers.links.edit")), edit_project_path(project), class: 'btn btn-mini'
           - if can? :destroy, project
             = link_to t('.destroy', default: t("helpers.links.destroy")), project_path(project), method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-mini btn-danger'
-
-= prepare_filter_bar
-
-.isotope-container
-  - @projects.each do |project|
-    .isotope-box
-      = link_to project.name, project, class: 'project-name'
-      %p= project.description
 
 .form-actions
   = link_to t('.new', :default => t("helpers.links.new")), new_project_path, :class => 'btn btn-primary'
