@@ -9,7 +9,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if params[:source] == "project"
-        return_users = @users.where("first_name || last_name || login like ?", "%#{params[:q]}%").where(:status => 'undergrad')
+        return_users = JSON.parse(User.ldap_undergrad_search(params[:q]).to_json)
+        #return_users = @users.where("first_name || last_name || login like ?", "%#{params[:q]}%").where(:status => 'undergrad')
       elsif params[:source] == "lab"
         return_users = JSON.parse(User.ldap_search(params[:q]).to_json)
 

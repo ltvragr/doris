@@ -14,11 +14,11 @@
       = f.label :user_tokens, "Students", class: 'control-label'
       .controls
         = f.text_field :user_tokens, data: {load: JSON.parse(@project.users.to_json)}
-  /- else
-  /  .control-group
-  /    = f.label :user_tokens, "Other people you know on this project?", /class: 'control-label'
-  /    .controls
-  /      = f.text_field :user_tokens
+  - else
+    .control-group
+      = f.label :user_tokens, "Other students working on this project", class: 'control-label'
+      .controls
+        = f.text_field :user_tokens, data: {load: JSON.parse(@project.users.to_json)}
       
   .control-group
     = f.label :description, class: 'control-label'
