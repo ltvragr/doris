@@ -1,25 +1,27 @@
 @import "colors";
 @import "mixins";
 
-@import "bootstrap_overrides";
-@import "bootstrap";
+// @import "bootstrap_overrides";
+// @import "bootstrap";
 
-.content {
-  margin-top: $navbarHeight + 10px;
-}
+@import "foundation_and_overrides";
 
-@import "bootstrap-responsive";
+// .content {
+//   margin-top: $navbarHeight + 10px;
+// }
+
+// @import "bootstrap-responsive";
 
 @import "font-awesome";
 
-@import "global";
+// @import "global";
 
-@import "layouts/*";
+// @import "layouts/*";
 
-@import "info_fields";
-@import "labs";
-@import "projects";
-@import "users";
-@import "home";
-@import "token-input-facebook";
-@import "dataTables/jquery.dataTables.bootstrap"; //= require foundation_and_overrides
+// @import "info_fields";
+// @import "labs";
+// @import "projects";
+// @import "users";
+// @import "home";
+// @import "token-input-facebook";
+// @import "dataTables/jquery.dataTables.bootstrap";

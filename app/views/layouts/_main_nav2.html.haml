@@ -1,0 +1,29 @@
+- content_for :main_nav2 do
+  %nav.top-bar
+    %ul.title-area
+      %li.name
+        %h1
+          = link_to 'Doris', home_index_path
+      %li.toggle-topbar.menu-icon
+        %a{ href: '#' }
+          %span Menu
+    %section.top-bar-section
+      %ul.left
+        = nav_tab 'Projects', projects_path, current: current_tab
+        = nav_tab 'Labs', labs_path, current: current_tab
+        = nav_tab 'Users', users_path, current: current_tab
+        = nav_tab 'Info Fields', info_fields_path, current: current_tab
+        = nav_tab 'News', '#', current: current_tab
+        = nav_tab 'Resources', '#', current: current_tab
+      %ul.right
+        %li.divider
+        - if current_user
+          %li.has-dropdown
+            %a{ href: '#' }
+              = current_user.name
+            %ul.dropdown
+              %li= link_to 'My Profile', current_user
+              %li= link_to 'Edit My Profile', edit_user_path(current_user)
+              %li= link_to 'Logout', logout_path
+        - else
+          %li= link_to 'Login', root_path

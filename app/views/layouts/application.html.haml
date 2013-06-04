@@ -20,20 +20,26 @@
     %link{ href: 'http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,600,700', rel: 'stylesheet', type: 'text/css' }
 
   %body
-    .navbar.navbar-fixed-top
-      .navbar-inner
-        .container
-          %a.btn.btn-navbar{ data: { target: '.nav-collapse', toggle: 'collapse' } }
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.brand{ href: '/home' }
-            %i.icon-circle{ title: 'Doris: Database of Research in Sciences' }
-          -if content_for? :main_nav
-            = yield :main_nav
-          -else
-            = render partial: 'layouts/main_nav', locals: { current_tab: nil }
-            = yield :main_nav
+    / .navbar.navbar-fixed-top
+    /   .navbar-inner
+    /     .container
+    /       %a.btn.btn-navbar{ data: { target: '.nav-collapse', toggle: 'collapse' } }
+    /         %span.icon-bar
+    /         %span.icon-bar
+    /         %span.icon-bar
+    /       %a.brand{ href: '/home' }
+    /         %i.icon-circle{ title: 'Doris: Database of Research in Sciences' }
+    /       -if content_for? :main_nav
+    /         = yield :main_nav
+    /       -else
+    /         = render partial: 'layouts/main_nav', locals: { current_tab: nil }
+    /         = yield :main_nav
+
+    -if content_for? :main_nav2
+      = yield :main_nav2
+    -else
+      = render partial: 'layouts/main_nav2', locals: { current_tab: nil }
+      = yield :main_nav2
 
     .container.content
 
