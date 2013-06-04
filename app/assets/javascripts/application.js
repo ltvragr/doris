@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
+//= require foundation
 //= require bootstrap
 //= require bootstrap_custom
 //= require jquery.tokeninput
@@ -37,3 +38,4 @@ $("#logo-search-field").popover({
 $(".favorite").tooltip({
   placement: 'left'
 });
+$(document).foundation();
