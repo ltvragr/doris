@@ -18,3 +18,16 @@ jQuery ->
       "<li>" + user.first_name + " " + user.last_name + " (" + user.login + ")</li>"
     tokenFormatter: (user) -> 
       "<li>" + user.first_name + " " + user.last_name + " (" + user.login + ")</li>"
+  $('#project_tag_tokens').tokenInput '/tags.json',
+    theme: 'facebook'
+    prePopulate: $('#project_tag_tokens').data('load')
+    resultsLimit: 10
+    preventDuplicates: true
+    propertyToSearch: "name"
+    tokenValue: "name"
+    allowTabOut: true
+    resultsFormatter: (tag) ->
+      if tag.id == null
+        "<li>" + tag.name + " (creating a new tag)</li>"
+      else
+        "<li>" + tag.name + "</li>"

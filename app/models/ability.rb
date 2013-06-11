@@ -10,6 +10,7 @@ class Ability
         can :modify_login, User
     else
         can :read, :all
+        cannot :look_at, Tag
         if user.status == "undergrad"
             can [:update, :edit], User do |user_object|
                 user_object == user

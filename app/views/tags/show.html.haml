@@ -1,0 +1,11 @@
+- title @tag.name
+
+%p
+  %strong Name:
+  = @tag.name
+
+.form-actions
+  - if can? :edit, @tag
+    = link_to 'Edit', edit_tag_path(@tag), class: 'btn'
+  - if can? :destroy, @tag
+    = link_to 'Destroy', tag_path(@tag), method: 'delete', data: { confirm: 'Are you sure?'}, class: 'btn btn-danger'

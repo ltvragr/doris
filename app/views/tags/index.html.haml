@@ -1,0 +1,25 @@
+- title 'Tags'
+- currently_at 'Tags'
+
+%table.table.table-striped.datatable
+  %thead
+    %tr
+      %th ID
+      %th Name
+      %th Projects
+      %th Created At
+      %th Actions
+  %tbody
+    - @tags.each do |tag|
+      %tr
+        %td= tag.id
+        %td= link_to tag.name, tag
+        %td
+          - tag.projects.each do |project|
+            = link_to project.name, project
+        %td= tag.created_at
+        %td
+          - if can? :edit, tag
+            = link_to t('.edit', default: t("helpers.links.edit")), edit_tag_path(tag), class: 'btn btn-mini'
+          - if can? :destroy, tag
+            = link_to t('.destroy', default: t("helpers.links.destroy")), tag_path(tag), method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-mini btn-danger'

@@ -25,6 +25,10 @@
     .controls
       = f.text_area :description, class: 'text_area', rows: "10"
   .control-group
+    = f.label :tag_tokens, "Tags", class: 'control-label'
+    .controls
+      = f.text_field :tag_tokens, data: {load: JSON.parse(@project.tags.to_json)}
+  .control-group
     = f.label :start_date, class: 'control-label'
     .controls
       = f.date_select :start_date, class: 'date_select'

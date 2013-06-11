@@ -34,6 +34,10 @@
   %strong End Date:
   %br
   = @project.end_date
+%p
+  %strong Tags:
+  %br
+  = raw @project.tag_list.split(", ").map { |t| link_to t, tag_path(t) }.join(', ')
 
 .form-actions
   = link_to t('.back', default: t("helpers.links.back")), projects_path, class: 'btn'

@@ -8,6 +8,7 @@
       %th Name
       %th Labs
       %th Description
+      %th Tags
       %th Start Date
       %th End Date
       %th Created At
@@ -21,6 +22,7 @@
           - project.labs.each do |lab|
             =link_to lab.name, lab
         %td= project.description
+        %td= raw project.tag_list.split(", ").map { |t| link_to t, tag_path(t) }.join(', ')
         %td= project.start_date
         %td= project.end_date
         %td= project.created_at
@@ -29,4 +31,3 @@
             = link_to t('.edit', default: t("helpers.links.edit")), edit_project_path(project), class: 'btn btn-mini'
           - if can? :destroy, project
             = link_to t('.destroy', default: t("helpers.links.destroy")), project_path(project), method: :delete, data: { confirm: t('.confirm', default: t("helpers.links.confirm", default: 'Are you sure?')) }, class: 'btn btn-mini btn-danger'
-

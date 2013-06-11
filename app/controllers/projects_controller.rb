@@ -5,10 +5,22 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     # @projects = Project.all
-
+    if params[:tag]
+      project_list = Project.tagged_with(params[:tag])
+    end
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @projects }
+      
+      if project_list == nil
+        if params[:tag]
+          flash.now[:error] = "There are no projects with the tag " + params[:tag]
+        end
+        format.html {render :index }
+        format.json { render json: @projects }
+      else
+        @projects = project_list
+        format.html # index.html.erb
+        format.json { render json: @projects }
+      end
     end
   end
 
@@ -46,12 +58,14 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     tokens = params[:project][:user_tokens]
-    undergrad_params = User.ldap_undergrad_search(tokens.chomp('*'))[0]
-    check_undergrad = User.where("login like ?", "%#{undergrad_params[:login]}%").where(status: 'undergrad').last
-    if check_undergrad == nil
-      check_undergrad = User.create! login: undergrad_params[:login], first_name: undergrad_params[:first_name], last_name: undergrad_params[:last_name], email: undergrad_params[:email], status: "undergrad", is_active: false
+    unless tokens.empty?
+      undergrad_params = User.ldap_undergrad_search(tokens.chomp('*'))[0]
+      check_undergrad = User.where("login like ?", "%#{undergrad_params[:login]}%").where(status: 'undergrad').last
+      if check_undergrad == nil
+        check_undergrad = User.create! login: undergrad_params[:login], first_name: undergrad_params[:first_name], last_name: undergrad_params[:last_name], email: undergrad_params[:email], status: "undergrad", is_active: false
+      end
+      params[:project][:user_tokens] = check_undergrad.id.to_s
     end
-    params[:project][:user_tokens] = check_undergrad.id.to_s
 
     @project = Project.new(params[:project])
 

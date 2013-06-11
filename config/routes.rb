@@ -2,6 +2,8 @@ Doris::Application.routes.draw do
 
   get "home/index", as: :home
 
+  get 'tags/:tag' => 'projects#index', as: :tag
+  resources :tags
   resources :info_fields
   resources :labs
   resources :users
@@ -16,6 +18,7 @@ Doris::Application.routes.draw do
   match '/add_self_to_project/:id' => 'projects#add_self_to_project', as: :add_self_to_project
   match '/remove_self_from_project/:id' => 'projects#remove_self_from_project', as: :remove_self_from_project
   get '/search' => 'search#search', as: :search
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
