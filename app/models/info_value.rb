@@ -5,7 +5,7 @@ class InfoValue < ActiveRecord::Base
 
   def self.sorted_values_for_object(object)
   	#TODO This should  be re-written so that object_type is inferred from info_field
-  	InfoValue.where('associated_object_id' => object.id).select do |iv|
+  	InfoValue.where(associated_object_id: object.id).select do |iv|
       iv.info_field.associated_object == object.class.name 
     end
   end
